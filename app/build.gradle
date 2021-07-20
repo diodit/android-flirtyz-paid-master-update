@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+    }
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.owo.phlurtyzpaid"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 5
+        versionName "5.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+
+//            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField('String','URL','"http://44.242.125.65/"');
+
+        }
+        debug {
+
+            buildConfigField('String','URL','"http://44.242.125.65/"');
+            signingConfig signingConfigs.debug
+        }
+    }
+    productFlavors {
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('androidx.test.espresso:espresso-core:3.1.0', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    //Android SDK
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.stripe:stripe-android:16.7.1'
+    testImplementation 'junit:junit:4.12'
+
+    //Jackson
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
+
+    //Okhttp
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+
+    //Apache commons
+    compile 'org.apache.commons:commons-lang3:3.5'
+
+    compile 'com.github.ivbaranov:materialfavoritebutton:0.1.4'
+
+    //Showcase view
+    compile 'com.github.amlcurran.showcaseview:library:5.4.3'
+
+    //retrofit call
+    implementation "com.squareup.retrofit2:retrofit:2.3.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.3.0"
+
+    //sun
+    implementation 'com.sun.mail:android-mail:1.6.4'
+    implementation 'com.sun.mail:android-activation:1.6.4'
+
+    //Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    //RXJava
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.0'
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e0165a</color>
+    <color name="colorPrimaryDark">#e0165a</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="colorAccent">#c8e8ff</color>
+
+    <color name="candidate_normal">#FF000000</color>
+    <color name="candidate_recommended">#FFE35900</color>
+    <color name="candidate_other">#ff808080</color>
+    <color name="candidate_background">#bbffffff</color>
+    <color name="white" >#ffffff</color>
+    <color name="hollywood_cerise" >#eb068f</color>
+    <color name="mine_shaft" >#303030</color>
+    <color name="gallery" >#eaeaea</color>
+    <color name="supernova" >#fd05a6</color>
+    <color name="bright_sun" >#fd05a6</color>
+    <color name="tundra" >#454545</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorDarkGray">#4D4D4D</color>
+    <color name="colorBlack">#050200</color>
+
+    <color name="dark">#151C2B</color>
+    <color name="bluedark">#1C2B49</color>
+    <color name="gris">#CCCCCC</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="blacktransparent">#72000000</color>
+    <color name="transparent_white_hex_1">#11ffffff</color>
+
+    <color name="black">#000000</color>
+    <color name="yellow">#fff5f504</color>
+    <color name="red">#B71C1C</color>
+
+</resources>
