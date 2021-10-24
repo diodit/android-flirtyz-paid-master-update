@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PHLURTYZANDROID.iml" filepath="$PROJECT_DIR$/PHLURTYZANDROID.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android-flirtyz-paid.iml" filepath="$PROJECT_DIR$/android-flirtyz-paid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android-flirtyz-paid-master-update.iml" filepath="$PROJECT_DIR$/android-flirtyz-paid-master-update.iml" group="android-flirtyz-paid-master-update" />
-      <module fileurl="file://$PROJECT_DIR$/app/android-flirtyz-paid-master-update-app.iml" filepath="$PROJECT_DIR$/app/android-flirtyz-paid-master-update-app.iml" group="android-flirtyz-paid-master-update/app" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-flirtyz-paid-master-update.iml" filepath="$PROJECT_DIR$/.idea/modules/android-flirtyz-paid-master-update.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-flirtyz-paid-master-update.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-flirtyz-paid-master-update.app.iml" />
     </modules>
   </component>
 </project>

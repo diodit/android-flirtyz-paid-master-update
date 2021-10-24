@@ -367,6 +367,8 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
             }
 
 
+        } else if (id == R.id.nav_myaccount){
+
         }
 //        else if (id == R.id.nav_unlock) {
 //
