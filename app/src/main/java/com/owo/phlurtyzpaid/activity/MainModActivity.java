@@ -368,6 +368,8 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
 
 
         } else if (id == R.id.nav_myaccount){
+            Intent intent = new Intent(MainModActivity.this, GetStarted.class);
+            startActivity(intent);
 
         }
 //        else if (id == R.id.nav_unlock) {

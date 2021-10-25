@@ -11,6 +11,7 @@
 
 
         <TextView
+            android:id="@+id/backRegister"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:text="Back"
@@ -112,6 +113,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
    <com.google.android.material.button.MaterialButton
+       android:id="@+id/register"
        android:layout_width="match_parent"
        android:layout_height="60dp"
        android:layout_marginTop="10dp"
@@ -132,7 +134,9 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="I already have an account?"/>
+
         <TextView
+            android:id="@+id/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"

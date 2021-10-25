@@ -11,6 +11,7 @@
 
 
         <TextView
+            android:id="@+id/back"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:text="Back"
@@ -81,7 +82,10 @@
         android:text="Forgot Password"
         android:textColor="@color/colorPrimary"
         android:layout_height="wrap_content"/>
+
+
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
@@ -104,6 +108,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
