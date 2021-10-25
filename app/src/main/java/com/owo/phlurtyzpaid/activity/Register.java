@@ -11,8 +11,8 @@ import com.google.android.material.button.MaterialButton;
 import com.owo.phlurtyzpaid.R;
 
 public class Register extends AppCompatActivity {
-    TextView back, login;
-    MaterialButton registerScreen;
+    private TextView back, login;
+    private MaterialButton registerScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,7 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         back = findViewById(R.id.backRegister);
         login = findViewById(R.id.login);
+        registerScreen = findViewById(R.id.register);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,21 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.owo.phlurtyzpaid.R;
 
 public class MyLogin extends AppCompatActivity {
-    TextView backLogin, register;
-    MaterialButton myLogin;
+    private TextView backLogin, register;
+    private MaterialButton myLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_login);
         backLogin = findViewById(R.id.back);
-        register = findViewById(R.id.signUp);
+        register = findViewById(R.id.register);
         myLogin = findViewById(R.id.login);
 
 
