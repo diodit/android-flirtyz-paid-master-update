@@ -16,8 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.RippleTabLayout"
-            android:theme="@style/CustomActivityThemeNoTitle" ></activity>
+        <activity android:name=".activity.MakePayment"></activity>
+        <activity
+            android:name=".activity.WelcomeScreen"
+            android:theme="@style/CustomActivityThemeNoTitle" />
         <activity
             android:name=".activity.MyLogin"
             android:theme="@style/CustomActivityThemeNoTitle" />

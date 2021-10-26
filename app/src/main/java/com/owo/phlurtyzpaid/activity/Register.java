@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.owo.phlurtyzpaid.R;
-import com.owo.phlurtyzpaid.fragment.FirstFragment;
 
 public class Register extends AppCompatActivity {
     private TextView back, login;
@@ -42,7 +41,7 @@ public class Register extends AppCompatActivity {
         registerScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Register.this, RippleTabLayout.class);
+                Intent intent = new Intent(Register.this, WelcomeScreen.class);
                 startActivity(intent);
             }
         });
