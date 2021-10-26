@@ -2,6 +2,7 @@ package com.owo.phlurtyzpaid.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,11 +15,17 @@ import java.util.zip.Inflater;
 
 public class MakePayment extends AppCompatActivity {
 
+    private Toolbar toolbarr;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_payment);
 
+        toolbarr = findViewById(R.id.toolbar11);
+
+
+        toolbarr.inflateMenu(R.menu.makepayment);
 
 
     }
@@ -32,7 +39,8 @@ public class MakePayment extends AppCompatActivity {
 //        inflater.inflate(R.menu.makepayment, menu);
         getMenuInflater().inflate(R.menu.makepayment, menu);
 
-        return true;
+        toolbarr.inflateMenu(R.menu.makepayment);
+        return super.onCreateOptionsMenu(menu);
 
     }
 
