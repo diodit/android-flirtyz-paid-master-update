@@ -16,11 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.WelcomeScreen"></activity>
-        <activity android:name=".activity.MyLogin"
-            android:theme="@style/CustomActivityThemeNoTitle"/>
-        <activity android:name=".activity.Register"
-            android:theme="@style/CustomActivityThemeNoTitle"/>
+        <activity android:name=".activity.RippleTabLayout"
+            android:theme="@style/CustomActivityThemeNoTitle" ></activity>
+        <activity
+            android:name=".activity.MyLogin"
+            android:theme="@style/CustomActivityThemeNoTitle" />
+        <activity
+            android:name=".activity.Register"
+            android:theme="@style/CustomActivityThemeNoTitle" />
         <activity android:name=".activity.GetStarted" /> <!-- Content Provide -->
         <provider
             android:name="androidx.core.content.FileProvider"

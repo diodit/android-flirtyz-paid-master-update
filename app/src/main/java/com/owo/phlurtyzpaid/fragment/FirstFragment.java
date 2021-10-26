@@ -2,14 +2,21 @@ package com.owo.phlurtyzpaid.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.adapter.EmojiAdapter;
 
@@ -30,6 +37,8 @@ public class FirstFragment extends Fragment {
     private String mParam2;
     private EmojiAdapter emojiAdapter;
     private RecyclerView recycler;
+
+
 
     public FirstFragment() {
         // Required empty public constructor
@@ -59,11 +68,15 @@ public class FirstFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            //        recycler = view.findViewById(R.id.recycler);
+
         }
 
-        emojiAdapter = new EmojiAdapter(getActivity());
-        recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recycler.setAdapter(emojiAdapter);
+//        emojiAdapter = new EmojiAdapter(getActivity());
+//        recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        recycler.setAdapter(emojiAdapter);
+//                recycler = findViewById(R.id.recycler);
+
 
     }
 
@@ -75,6 +88,11 @@ public class FirstFragment extends Fragment {
 
         recycler = view.findViewById(R.id.recycler);
 
+        emojiAdapter = new EmojiAdapter(getContext());
+        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycler.setAdapter(emojiAdapter);
+
         return view;
     }
+
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.owo.phlurtyzpaid.R;
+import com.owo.phlurtyzpaid.fragment.FirstFragment;
 
 public class MyLogin extends AppCompatActivity {
     private TextView backLogin, register;
@@ -44,8 +45,8 @@ public class MyLogin extends AppCompatActivity {
         myLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MyLogin.this, WelcomeScreen.class);
-                startActivity(intent);
+                    Intent intent = new Intent(MyLogin.this, RippleTabLayout.class);
+                    startActivity(intent);
             }
         });
     }

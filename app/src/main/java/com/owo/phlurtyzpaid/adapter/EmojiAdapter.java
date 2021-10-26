@@ -39,7 +39,7 @@ public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.Viewholder> 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 1;
     }
 
     public class Viewholder extends RecyclerView.ViewHolder {
