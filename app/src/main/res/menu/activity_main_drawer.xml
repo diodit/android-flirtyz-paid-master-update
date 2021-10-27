@@ -15,6 +15,12 @@
 <!--            android:id="@+id/nav_special"-->
 <!--            android:icon="@drawable/ic_emoticon_special_black_24dp"-->
 <!--            android:title="Special" />-->
+
+        <item
+            android:id="@+id/Inapp"
+            android:icon="@drawable/ic_star_black_24dp"
+            android:title="In App Groups" />
+
         <item
             android:id="@+id/nav_recent"
             android:icon="@drawable/ic_recent_black_24dp"

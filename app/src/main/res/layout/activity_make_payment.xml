@@ -22,6 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
+            android:onClick="back"
             android:src="@drawable/ic_baseline_arrow_back_ios"
             />
 
@@ -126,6 +127,7 @@ with a link o receive the \n uncensored Flirty App."
         android:layout_marginBottom="32dp"
         android:background="@drawable/sign_up"
         android:text="Cancel"
+        android:onClick="cancle"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.FlirtyGroupPage">
+
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/appbarforflrity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E1A7A7"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/profilepic"/>
+
+            <LinearLayout
+                android:id="@+id/groupName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Group Members Name"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Date Joined: Sep 11, 2021"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/btn_signup"
+            android:text="PURCHASE $2.99"
+            android:textAppearance="@style/TextStyle"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Other Groups By This Creator"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="15dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="15dp"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
