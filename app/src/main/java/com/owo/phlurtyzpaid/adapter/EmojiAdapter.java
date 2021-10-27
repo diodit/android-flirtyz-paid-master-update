@@ -39,6 +39,7 @@ public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.Viewholder> 
     public void onSeacrhListerner(ProductListener productListener1){
         this.productListener = productListener1;
     }
+
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
 

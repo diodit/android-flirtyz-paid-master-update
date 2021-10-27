@@ -206,10 +206,11 @@ public class WelcomeScreen extends AppCompatActivity implements NavigationView.O
             Intent intent = new Intent(WelcomeScreen.this, GetStarted.class);
             startActivity(intent);
 
+        } else if (id == R.id.Inapp) {
+            Intent intent = new Intent(WelcomeScreen.this, FlirtyGroupPage.class);
+            startActivity(intent);
+
         }
-//        else if (id == R.id.nav_unlock) {
-//
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 

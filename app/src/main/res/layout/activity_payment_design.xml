@@ -166,7 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="By clicking PURCAHSE, you authorize use to \ncharge your card, and you agree to our terms and
+            android:text="By clicking PURCHASE, you authorize use to \ncharge your card, and you agree to our terms and
 \nuderstand that your payment will be a one-time \ncharge."/>
 
 
