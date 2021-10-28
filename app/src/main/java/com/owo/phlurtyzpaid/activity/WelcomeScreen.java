@@ -50,6 +50,7 @@ public class WelcomeScreen extends AppCompatActivity implements NavigationView.O
 
 
         toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         viewPager = findViewById(R.id.view_pager);
         tabLayout = findViewById(R.id.tab_layout);
