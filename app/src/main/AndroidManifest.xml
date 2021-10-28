@@ -16,15 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.FlirtyGroupPage"
-            android:theme="@style/CustomActivityThemeNoTitle">
-
-        </activity>
+        <activity android:name=".activity.ActionScreen" />
+        <activity
+            android:name=".activity.FlirtyGroupPage"
+            android:theme="@style/CustomActivityThemeNoTitle" />
         <activity
             android:name=".activity.PaymentDesign"
-            android:theme="@style/CustomActivityThemeNoTitle">
-
-        </activity>
+            android:theme="@style/CustomActivityThemeNoTitle" />
         <activity android:name=".activity.MakePayment" />
         <activity
             android:name=".activity.WelcomeScreen"

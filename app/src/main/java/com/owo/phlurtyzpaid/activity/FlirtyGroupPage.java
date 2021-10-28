@@ -18,7 +18,7 @@ import java.util.List;
 
 public class FlirtyGroupPage extends AppCompatActivity {
     List<Flirty> flirtyContainer;
-    private RecyclerView recyclerView, secondRecycler;
+    private RecyclerView recyclerView, secondRecycler, thirdRecyclerview;
     private FlirtyAdapter flirtyAdapter;
 
     @Override
@@ -27,6 +27,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
         setContentView(R.layout.activity_flirty_group_page);
         recyclerView = findViewById(R.id.recycler1);
         secondRecycler = findViewById(R.id.recycler2);
+        thirdRecyclerview = findViewById(R.id.recycler3);
 
         flirtyContainer = new ArrayList<>();
         List<Flirty> flirt = flirtGenerator(flirtyContainer);
@@ -42,6 +43,15 @@ public class FlirtyGroupPage extends AppCompatActivity {
         linearLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
         secondRecycler.setLayoutManager(linearLayoutManager1);
         secondRecycler.setAdapter(flirtyAdapter);
+
+
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this);
+        linearLayoutManager2.setOrientation(RecyclerView.HORIZONTAL);
+        secondRecycler.setLayoutManager(linearLayoutManager2);
+        secondRecycler.setAdapter(flirtyAdapter);
+
+
+
     }
 
 
@@ -59,7 +69,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
     }
 
     public void Action(View view) {
-//        Intent intent =  new Intent(FlirtyGroupPage.this, ActionScreen.class);
-//        startActivity(intent);
+        Intent intent =  new Intent(FlirtyGroupPage.this, ActionScreen.class);
+        startActivity(intent);
     }
 }

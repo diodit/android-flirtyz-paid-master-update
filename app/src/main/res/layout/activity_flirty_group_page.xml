@@ -147,45 +147,28 @@
             </FrameLayout>
 
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#E1A7A7"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="10dp">
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="130dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/profilepic"/>
-
-                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/ic_baseline_lock_24"
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Group Members Name"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Date Joined: Sep 11, 2021"/>
+                    android:layout_height="150dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:scrollbarStyle="outsideInset"
+                    android:scrollbars="horizontal"/>
+            </FrameLayout>
 
 
-                </LinearLayout>
-
-
-            </LinearLayout>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
