@@ -1,6 +1,7 @@
 package com.owo.phlurtyzpaid.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,13 +37,16 @@ public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.Viewho
     @Override
     public void onBindViewHolder(@NonNull PurchaseAdapter.Viewholder holder, int position) {
         Purchase purchase = purchaseList.get(position);
+
         holder.textView.setText(purchase.getName());
 
         Glide.with(context)
                 .asBitmap()
                 .circleCrop()
+                .load(Uri.parse("file:///android_asset/emojis/"+purchase.getIcon()))
                 .load(purchase.getIcon())
                 .into(holder.imageView);
+
 
     }
 

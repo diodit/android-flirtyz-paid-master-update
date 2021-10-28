@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,9 @@ import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.adapter.PurchaseAdapter;
 import com.owo.phlurtyzpaid.model.Purchase;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -88,11 +91,29 @@ public class ActionThirdFragment extends Fragment {
 //        emojiContainer = new ArrayList<>();
 
 
+//        String[] images;
+//        try {
+//            images = getActivity().getAssets().list("emojis");
+//            ArrayList<String> listImages = new ArrayList<String>(Arrays.asList(images));
+//
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+
+            for (int i = 0; i < 10; ++i) {
+
+                //Log.d("imagesss", listImages.get(i));
+
+
+                Purchase purchase1 = new Purchase("https://cdn.pixabay.com/photo/2021/10/08/16/22/plant-6691763__480.jpg", "group name");
+                purchases.add(purchase1);
+            }
 //        emojis = new ArrayList<>();
-        for (int i = 0; i < 10; ++i){
-            Purchase purchase1 = new Purchase("https://cdn.pixabay.com/photo/2020/04/26/09/07/bird-5094334__340.jpg", "group name");
-            purchases.add(purchase1);
-        }
+
 
         return purchases;
     }

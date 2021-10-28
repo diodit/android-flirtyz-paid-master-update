@@ -47,8 +47,8 @@ public class FlirtyGroupPage extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this);
         linearLayoutManager2.setOrientation(RecyclerView.HORIZONTAL);
-        secondRecycler.setLayoutManager(linearLayoutManager2);
-        secondRecycler.setAdapter(flirtyAdapter);
+        thirdRecyclerview.setLayoutManager(linearLayoutManager2);
+        thirdRecyclerview.setAdapter(flirtyAdapter);
 
 
 
