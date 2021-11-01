@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.ForgetPassword"
+            android:theme="@style/CustomActivityThemeNoTitle">
+
+        </activity>
         <activity android:name=".activity.ActionScreen" />
         <activity
             android:name=".activity.FlirtyGroupPage"

@@ -48,4 +48,9 @@ public class MyLogin extends AppCompatActivity {
             }
         });
     }
+
+    public void ResetPassword(View view) {
+        Intent intent = new Intent(MyLogin.this, ForgetPassword.class);
+        startActivity(intent);
+    }
 }

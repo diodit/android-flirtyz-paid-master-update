@@ -71,11 +71,13 @@ public class WelcomeScreen extends AppCompatActivity implements NavigationView.O
         navigationView.setNavigationItemSelectedListener(this);
 
 
+
         firstFragment = new FirstFragment();
         secondFragment = new SecondFragment();
         thirdFragment = new ThirdFragment();
-
         tabLayout.setupWithViewPager(viewPager);
+
+
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
         viewPagerAdapter.addFragment(firstFragment, "");
@@ -83,9 +85,18 @@ public class WelcomeScreen extends AppCompatActivity implements NavigationView.O
         viewPagerAdapter.addFragment(thirdFragment, "");
         viewPager.setAdapter(viewPagerAdapter);
 
+
         tabLayout.getTabAt(0).setText("home");
         tabLayout.getTabAt(1).setText("action");
         tabLayout.getTabAt(2).setText("basic");
+
+//        String [] bamidele = {"home", "action", "basic"};
+//
+//
+//        for(int i = 0; i < bamidele.length ; i++){
+//            tabLayout.getTabAt(i).setText(bamidele[i]);
+        //}
+
 //        tabLayout.setTabTextColors(getResources().getColor());
 
 //        BadgeDrawable badgeDrawable = tabLayout.getTabAt(0).getOrCreateBadge();
@@ -94,35 +105,6 @@ public class WelcomeScreen extends AppCompatActivity implements NavigationView.O
 
     }
 
-
-
-    private class ViewPagerAdapter extends FragmentPagerAdapter {
-        private List<Fragment> fragments = new ArrayList<>();
-        private List<String> fragmentTitles = new ArrayList<>();
-        public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
-            super(fm, behavior);
-        }
-        //add fragment to the viewpager
-        public void addFragment(Fragment fragment, String title){
-            fragments.add(fragment);
-            fragmentTitles.add(title);
-        }
-        @NonNull
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-        //to setup title of the tab layout
-        @Nullable
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return fragmentTitles.get(position);
-        }
-    }
     @Override
     public void onBackPressed() {
 
@@ -219,4 +201,34 @@ public class WelcomeScreen extends AppCompatActivity implements NavigationView.O
 
         return true;
     }
+
+
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
+        private List<Fragment> fragments = new ArrayList<>();
+        private List<String> fragmentTitles = new ArrayList<>();
+        public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
+            super(fm, behavior);
+        }
+        //add fragment to the viewpager
+        public void addFragment(Fragment fragment, String title){
+            fragments.add(fragment);
+            fragmentTitles.add(title);
+        }
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return fragments.get(position);
+        }
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
+        //to setup title of the tab layout
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return fragmentTitles.get(position);
+        }
+    }
+
 }
