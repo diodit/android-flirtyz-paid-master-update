@@ -1,6 +1,5 @@
 package com.owo.phlurtyzpaid.api.interfaces;
 
-import com.owo.phlurtyzpaid.model.Cathegory;
 import com.owo.phlurtyzpaid.model.CathegoryModel;
 import com.owo.phlurtyzpaid.model.LoginModel;
 import com.owo.phlurtyzpaid.model.LoginResponse;
@@ -33,9 +32,6 @@ public interface UserService {
 
     @POST("membership/api/password/mobile/reset")
     Call<ResetPasswordRespond>getResetPasswordResponse(@Body ResetPassword resetPassword);
-
-    @GET("api/category/getInAppCategories")
-    Call<Cathegory>getCathegory();
 
     @GET("api/category/getInAppCategories")
     Call<List<CathegoryModel>> getCathegorieModel();

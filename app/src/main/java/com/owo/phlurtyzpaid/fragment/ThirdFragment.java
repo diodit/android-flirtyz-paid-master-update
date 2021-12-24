@@ -15,9 +15,8 @@ import android.view.ViewGroup;
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.activity.MakePayment;
 import com.owo.phlurtyzpaid.adapter.EmojiAdapter;
-import com.owo.phlurtyzpaid.model.Cathegory;
 import com.owo.phlurtyzpaid.model.CathegoryModel;
-import com.owo.phlurtyzpaid.model.Emoji;
+
 import com.owo.phlurtyzpaid.service.ApiClient;
 
 import java.util.ArrayList;
@@ -86,7 +85,7 @@ public class ThirdFragment extends Fragment {
 
         cathegoryMod = new ArrayList<>();
 
-        firstScreen();
+        secondScreen();
 
         if (emojiAdapter != null){
             emojiAdapter.onSeacrhListerner(new EmojiAdapter.ProductListener() {
@@ -102,44 +101,39 @@ public class ThirdFragment extends Fragment {
         return view;
     }
 
-//    public List<Emoji> emojisGenerator(List<Emoji> emojis){
-////        emojiContainer = new ArrayList<>();
-//
-//
-////        emojis = new ArrayList<>();
-//        for (int i = 0; i < 10; ++i){
-//            Emoji emoji = new Emoji("https://cdn.pixabay.com/photo/2020/04/26/09/07/bird-5094334__340.jpg", "group name", 20);
-//            emojis.add(emoji);
-//        }
-//
-//        return emojis;
-//    }
+    private void secondScreen(){
 
-    private void firstScreen(){
-        Call<Cathegory> cathegoryCall = ApiClient.getService().getCathegory();
-        cathegoryCall.enqueue(new Callback<Cathegory>() {
+        Call<List<CathegoryModel>> listCall =ApiClient.getService().getCathegorieModel();
+        listCall.enqueue(new Callback<List<CathegoryModel>>() {
             @Override
-            public void onResponse(Call<Cathegory> call, Response<Cathegory> response) {
-                if (response.isSuccessful()){
+            public void onResponse(Call<List<CathegoryModel>> call, Response<List<CathegoryModel>> response) {
+                if (!response.isSuccessful()){
 
-                    cathegoryMod = response.body().getCathegoryModels();
 
-                    cathegoryMod.get(0).getId();
+                    Log.d("not successfuly", ""+response.errorBody());
 
-                    recycler = view.findViewById(R.id.recycler);
-
-                    Log.d("view", ""+cathegoryMod.size());
-                    emojiAdapter = new EmojiAdapter(getContext(), cathegoryMod);
-                    recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-                    recycler.setAdapter(emojiAdapter);
+                    return;
 
                 }
+
+                cathegoryMod = response.body();
+
+                cathegoryMod.get(0).getId();
+
+                recycler = view.findViewById(R.id.recycler);
+
+                Log.d("view", ""+cathegoryMod.size());
+                emojiAdapter = new EmojiAdapter(getContext(), cathegoryMod);
+                recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                recycler.setAdapter(emojiAdapter);
             }
 
             @Override
-            public void onFailure(Call<Cathegory> call, Throwable t) {
+            public void onFailure(Call<List<CathegoryModel>> call, Throwable t) {
 
+                Log.d("cathenotshown", ""+t.getMessage());
             }
         });
     }
+
 }

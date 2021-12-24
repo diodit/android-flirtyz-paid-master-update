@@ -22,9 +22,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.activity.MakePayment;
 import com.owo.phlurtyzpaid.adapter.EmojiAdapter;
-import com.owo.phlurtyzpaid.model.Cathegory;
 import com.owo.phlurtyzpaid.model.CathegoryModel;
-import com.owo.phlurtyzpaid.model.Emoji;
 import com.owo.phlurtyzpaid.service.ApiClient;
 import com.stripe.android.model.PaymentMethod;
 
@@ -52,7 +50,6 @@ public class FirstFragment extends Fragment {
     private String mParam2;
     private EmojiAdapter emojiAdapter;
     private RecyclerView recycler;
-//    List<Emoji> emojiContainer;
     private  View view;
     private  List<CathegoryModel> cathegoryMod;
 
@@ -93,17 +90,12 @@ public class FirstFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         view = inflater.inflate(R.layout.fragment_first, container, false);
 
-
-//        emojiContainer = new ArrayList<>();
         cathegoryMod = new ArrayList<>();
 
         secondScreen();
-
-//        List<Emoji> emoji = emojisGenerator(emojiContainer);
-//        recycler = view.findViewById(R.id.recycler);
 
 
         if (emojiAdapter != null){
@@ -120,18 +112,6 @@ public class FirstFragment extends Fragment {
         return view;
     }
 
-//    public List<Emoji> emojisGenerator(List<Emoji> emojis){
-////        emojiContainer = new ArrayList<>();
-//
-//
-////        emojis = new ArrayList<>();
-//        for (int i = 0; i < 10; ++i){
-//            Emoji emoji = new Emoji("https://cdn.pixabay.com/photo/2020/04/26/09/07/bird-5094334__340.jpg", "group name", 20);
-//            emojis.add(emoji);
-//        }
-//
-//        return emojis;
-//    }
 
 
     private void secondScreen(){
@@ -169,44 +149,4 @@ public class FirstFragment extends Fragment {
         });
     }
 
-//    private void firstScreen(){
-//        Call<Cathegory> cathegoryCall = ApiClient.getService().getCathegory();
-//        cathegoryCall.enqueue(new Callback<Cathegory>() {
-//            @Override
-//            public void onResponse(Call<Cathegory> call, Response<Cathegory> response) {
-//                if (!response.isSuccessful()){
-//
-//
-//                    Log.d("not successfuly", ""+response.errorBody());
-//
-//                    return;
-//
-//                }
-//
-//                cathegoryMod = response.body().getCathegoryModels();
-//
-//                cathegoryMod.get(0).getId();
-//
-//                recycler = view.findViewById(R.id.recycler);
-//
-//                Log.d("view", ""+cathegoryMod.size());
-//                emojiAdapter = new EmojiAdapter(getContext(), cathegoryMod);
-//                recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-//                recycler.setAdapter(emojiAdapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Cathegory> call, Throwable t) {
-//                Log.d("cathenotshown", ""+t.getMessage());
-//
-//
-//
-//            }
-//        });
-    //}
-
-//    private List<CathegoryModel> listCathegorieModel(){
-//        firstScreen();
-//        return null;
-//    }
 }

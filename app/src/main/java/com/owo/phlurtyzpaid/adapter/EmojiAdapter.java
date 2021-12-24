@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.model.CathegoryModel;
-import com.owo.phlurtyzpaid.model.Emoji;
 
 import java.util.List;
 
