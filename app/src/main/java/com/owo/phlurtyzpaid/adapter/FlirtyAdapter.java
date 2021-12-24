@@ -13,17 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.owo.phlurtyzpaid.R;
-import com.owo.phlurtyzpaid.model.Flirty;
+import com.owo.phlurtyzpaid.model.CathegoryModel;
+
 
 import java.util.List;
 
 public class FlirtyAdapter extends RecyclerView.Adapter<FlirtyAdapter.Viewholder> {
     Context context;
-    List<Flirty> flirtyList;
+    private String Url = "http://34.217.126.209/";
+    List<CathegoryModel> cathegoryModelList;
 
-    public FlirtyAdapter(Context context, List<Flirty> flirtyList){
+    public FlirtyAdapter(Context context, List<CathegoryModel> cathegoryModelList){
         this.context = context;
-        this.flirtyList = flirtyList;
+        this.cathegoryModelList = cathegoryModelList;
     }
 
     @NonNull
@@ -36,21 +38,21 @@ public class FlirtyAdapter extends RecyclerView.Adapter<FlirtyAdapter.Viewholder
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-        Flirty flirty = flirtyList.get(position);
+        CathegoryModel cathegory = cathegoryModelList.get(position);
 
-        holder.textView1.setText(String.valueOf(flirty.getPrice()));
-        holder.textView.setText(flirty.getName());
+        holder.textView1.setText(String.valueOf(cathegory.getId()));
+        holder.textView.setText(cathegory.getName());
 
         Glide.with(context)
                 .asBitmap()
                 .circleCrop()
-                .load(flirty.getIcon())
+                .load(Url+cathegory.getFile())
                 .into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
-        return flirtyList.size();
+        return cathegoryModelList.size();
     }
 
 
