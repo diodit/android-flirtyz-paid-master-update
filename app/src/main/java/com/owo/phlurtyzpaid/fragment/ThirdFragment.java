@@ -15,10 +15,17 @@ import android.view.ViewGroup;
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.activity.MakePayment;
 import com.owo.phlurtyzpaid.adapter.EmojiAdapter;
+import com.owo.phlurtyzpaid.model.Cathegory;
+import com.owo.phlurtyzpaid.model.CathegoryModel;
 import com.owo.phlurtyzpaid.model.Emoji;
+import com.owo.phlurtyzpaid.service.ApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,12 +38,14 @@ public class ThirdFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    List<Emoji> emojiContainer;
+//    List<Emoji> emojiContainer;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private EmojiAdapter emojiAdapter;
+    private  View view;
     private RecyclerView recycler;
+    private  List<CathegoryModel> cathegoryMod;
 
     public ThirdFragment() {
         // Required empty public constructor
@@ -73,40 +82,64 @@ public class ThirdFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_third, container, false);
+        view = inflater.inflate(R.layout.fragment_third, container, false);
 
-        emojiContainer = new ArrayList<>();
-        List<Emoji> emoji = emojisGenerator(emojiContainer);
-        recycler = view.findViewById(R.id.recycler2);
+        cathegoryMod = new ArrayList<>();
 
-        Log.d("view", ""+emoji.size());
-        emojiAdapter = new EmojiAdapter(getContext(), emoji);
-        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        recycler.setAdapter(emojiAdapter);
+        firstScreen();
 
+        if (emojiAdapter != null){
+            emojiAdapter.onSeacrhListerner(new EmojiAdapter.ProductListener() {
+                @Override
+                public void selectProduct(int position) {
 
-        emojiAdapter.onSeacrhListerner(new EmojiAdapter.ProductListener() {
-            @Override
-            public void selectProduct(int position) {
-
-                Intent intent = new Intent(getContext(), MakePayment.class);
-                startActivity(intent);
-            }
-        });
+                    Intent intent = new Intent(getContext(), MakePayment.class);
+                    startActivity(intent);
+                }
+            });
+        }
 
         return view;
     }
 
-    public List<Emoji> emojisGenerator(List<Emoji> emojis){
-//        emojiContainer = new ArrayList<>();
+//    public List<Emoji> emojisGenerator(List<Emoji> emojis){
+////        emojiContainer = new ArrayList<>();
+//
+//
+////        emojis = new ArrayList<>();
+//        for (int i = 0; i < 10; ++i){
+//            Emoji emoji = new Emoji("https://cdn.pixabay.com/photo/2020/04/26/09/07/bird-5094334__340.jpg", "group name", 20);
+//            emojis.add(emoji);
+//        }
+//
+//        return emojis;
+//    }
 
+    private void firstScreen(){
+        Call<Cathegory> cathegoryCall = ApiClient.getService().getCathegory();
+        cathegoryCall.enqueue(new Callback<Cathegory>() {
+            @Override
+            public void onResponse(Call<Cathegory> call, Response<Cathegory> response) {
+                if (response.isSuccessful()){
 
-//        emojis = new ArrayList<>();
-        for (int i = 0; i < 10; ++i){
-            Emoji emoji = new Emoji("https://cdn.pixabay.com/photo/2020/04/26/09/07/bird-5094334__340.jpg", "group name", 20);
-            emojis.add(emoji);
-        }
+                    cathegoryMod = response.body().getCathegoryModels();
 
-        return emojis;
+                    cathegoryMod.get(0).getId();
+
+                    recycler = view.findViewById(R.id.recycler);
+
+                    Log.d("view", ""+cathegoryMod.size());
+                    emojiAdapter = new EmojiAdapter(getContext(), cathegoryMod);
+                    recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                    recycler.setAdapter(emojiAdapter);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Cathegory> call, Throwable t) {
+
+            }
+        });
     }
 }

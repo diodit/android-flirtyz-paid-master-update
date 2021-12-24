@@ -24,8 +24,16 @@ public class GetStarted extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GetStarted.this, MyLogin.class);
-                startActivity(intent);
+                if (checkUserLogin()){
+
+                    Intent intent = new Intent(GetStarted.this, WelcomeScreen.class);
+                    startActivity(intent);
+
+                }else {
+                    Intent intent = new Intent(GetStarted.this, MyLogin.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -36,5 +44,10 @@ public class GetStarted extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private boolean checkUserLogin(){
+
+        return false;
     }
 }

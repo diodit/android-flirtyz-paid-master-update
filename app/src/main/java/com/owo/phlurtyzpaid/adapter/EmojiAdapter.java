@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.owo.phlurtyzpaid.R;
+import com.owo.phlurtyzpaid.model.CathegoryModel;
 import com.owo.phlurtyzpaid.model.Emoji;
 
 import java.util.List;
@@ -20,12 +21,13 @@ import java.util.List;
 
 public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.Viewholder> {
     Context context;
-    List<Emoji> emojisList;
+    List<CathegoryModel> cathegoryModelList;
     ProductListener productListener;
+    private String Url = "http://34.217.126.209/";
 
-    public EmojiAdapter(Context context, List<Emoji> emojisList){
+    public EmojiAdapter(Context context, List<CathegoryModel> cathegoryModelList){
         this.context = context;
-        this.emojisList = emojisList;
+        this.cathegoryModelList = cathegoryModelList;
     }
 
 
@@ -43,22 +45,22 @@ public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.Viewholder> 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
 
-        Emoji emoji = emojisList.get(position);
+        CathegoryModel cathegory = cathegoryModelList.get(position);
 
-        holder.textView2.setText(String.valueOf(emoji.getPrice()));
-        holder.textView.setText(emoji.getGroupName());
+        holder.textView2.setText(String.valueOf(cathegory.getId()));
+        holder.textView.setText(cathegory.getName());
 
         Glide.with(context)
                 .asBitmap()
                 .circleCrop()
-                .load(emoji.getIcon())
+                .load(Url+cathegory.getFile())
                 .into(holder.imageView);
     }
 
 
     @Override
     public int getItemCount() {
-        return emojisList.size();
+        return cathegoryModelList.size();
     }
 
    public interface ProductListener{
@@ -73,7 +75,7 @@ public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.Viewholder> 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.emoji);
-            textView = itemView.findViewById(R.id.flirty);
+            textView = itemView.findViewById(R.id.emojiText);
             linearLayout = itemView.findViewById(R.id.linearlayout);
 
             textView2 = itemView.findViewById(R.id.price);
