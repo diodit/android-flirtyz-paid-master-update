@@ -122,7 +122,7 @@ public class SecondFragment extends Fragment {
 
                 cathegoryMod.get(0).getId();
 
-                recycler = view.findViewById(R.id.recycler);
+                recycler = view.findViewById(R.id.recycler1);
 
                 Log.d("view", ""+cathegoryMod.size());
                 emojiAdapter = new EmojiAdapter(getContext(), cathegoryMod);
