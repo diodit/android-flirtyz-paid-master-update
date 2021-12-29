@@ -29,7 +29,7 @@ public class MyLogin extends AppCompatActivity {
     private TextView backLogin, register, forget;
     private MaterialButton myLogin;
     private TextInputEditText emaill, password;
-    private String user_email, user_password;
+    private String user_email, user_password, user_token;
     private String email, passwo;
     LoginModel loginModel;
     private ProgressBar progressBar;
@@ -56,7 +56,6 @@ public class MyLogin extends AppCompatActivity {
             loginModel = new LoginModel("", "");
             email = SharedPref.getInstance(MyLogin.this).geStoredEmail();
             passwo = SharedPref.getInstance(MyLogin.this).getStoredPassword();
-
             loginModel.setEmail(email);
             loginModel.setPassword(passwo);
 
@@ -132,16 +131,22 @@ public class MyLogin extends AppCompatActivity {
                     if (!checkUserlogged()){
                         SharedPref.getInstance(MyLogin.this).setStoredEmail("email", user_email );
                         SharedPref.getInstance(MyLogin.this).setStoredPassword("password", user_password );
+
                     }
 
                     LoginResponse loginResponse = response.body();
                     loginResponse.getStatus();
+                    user_token = loginResponse.getAccess_token();
+
+                    SharedPref.getInstance(MyLogin.this).setStoredToken("token", user_token);
 
                     Toast.makeText(MyLogin.this, loginResponse.getStatus(), Toast.LENGTH_LONG).show();
 
-                    Log.d("logged in", ""+loginResponse.getUser().getEmail());
+                    Log.d("logged in", ""+user_token);
                     startActivity(intent);
 
+                }else{
+                    Toast.makeText(MyLogin.this, response.message(), Toast.LENGTH_LONG).show();
                 }
 
             }

@@ -5,12 +5,11 @@ public class CreatedBy {
     private String email;
     private String firstName;
     private String lastName;
-    private String stripeCustonerId;
+    private String stripeCustonerId; //work on
     private String role;
-    private String active;
+    private Boolean active;
     private String updatedAt;
     private String createdAt;
-    private EmojiModel emojis;
 
     public CreatedBy() {
     }
@@ -63,11 +62,11 @@ public class CreatedBy {
         this.role = role;
     }
 
-    public String getActive() {
+    public Boolean getActive() {
         return active;
     }
 
-    public void setActive(String active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 
@@ -87,11 +86,4 @@ public class CreatedBy {
         this.createdAt = createdAt;
     }
 
-    public EmojiModel getEmojis() {
-        return emojis;
-    }
-
-    public void setEmojis(EmojiModel emojis) {
-        this.emojis = emojis;
-    }
 }

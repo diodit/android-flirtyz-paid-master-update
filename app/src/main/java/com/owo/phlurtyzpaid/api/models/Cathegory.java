@@ -8,7 +8,6 @@ public class Cathegory {
     private String version;
     private UpdatedAt updatedAt;
     private CreatedAt createdAt;
-    private CreatedBy createdBy;
 
     public Cathegory() {
     }
@@ -69,11 +68,4 @@ public class Cathegory {
         this.createdAt = createdAt;
     }
 
-    public CreatedBy getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(CreatedBy createdBy) {
-        this.createdBy = createdBy;
-    }
 }

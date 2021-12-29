@@ -3,11 +3,10 @@ package com.owo.phlurtyzpaid.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -16,22 +15,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.google.android.material.tabs.TabLayout;
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.activity.MakePayment;
+import com.owo.phlurtyzpaid.activity.MyLogin;
 import com.owo.phlurtyzpaid.adapter.EmojiAdapter;
-import com.owo.phlurtyzpaid.model.CathegoryModel;
-import com.owo.phlurtyzpaid.service.ApiClient;
+import com.owo.phlurtyzpaid.adapter.EmojiUserStatusAdapter;
+import com.owo.phlurtyzpaid.api.models.UserStatus;
+
+import com.owo.phlurtyzpaid.service.SharedPref;
+import com.owo.phlurtyzpaid.utils.GeneralFactory;
 import com.stripe.android.model.PaymentMethod;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,10 +45,11 @@ public class FirstFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private EmojiAdapter emojiAdapter;
+    private EmojiUserStatusAdapter emojiAdapter;
     private RecyclerView recycler;
+    private String token;
     private  View view;
-    private  List<CathegoryModel> cathegoryMod;
+    private List<UserStatus> statuses;
 
 
     public FirstFragment() {
@@ -82,8 +80,6 @@ public class FirstFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            //        recycler = view.findViewById(R.id.recycler);
-
         }
     }
 
@@ -93,9 +89,26 @@ public class FirstFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_first, container, false);
 
-        cathegoryMod = new ArrayList<>();
+        token =  SharedPref.getInstance(getContext()).getStoredToken();
 
-        secondScreen();
+        Log.d("token", ""+token);
+        GeneralFactory generalFactory = GeneralFactory.getGeneralFactory(getActivity());
+
+
+        statuses = new ArrayList<>();
+
+                generalFactory.loadFromApiUserStatus(token, new GeneralFactory.FetchUserStatus() {
+                    @Override
+                    public void userFetcher(List<UserStatus> friends) {
+
+                        recycler = view.findViewById(R.id.recycler);
+                        statuses = friends;
+                        Log.d("view", ""+statuses.size());
+                        emojiAdapter = new EmojiUserStatusAdapter(getContext(), statuses);
+                        recycler.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                        recycler.setAdapter(emojiAdapter);
+                    }
+                });
 
 
         if (emojiAdapter != null){
@@ -110,43 +123,6 @@ public class FirstFragment extends Fragment {
         }
 
         return view;
-    }
-
-
-
-    private void secondScreen(){
-
-        Call<List<CathegoryModel>> listCall =ApiClient.getService().getCathegorieModel();
-        listCall.enqueue(new Callback<List<CathegoryModel>>() {
-            @Override
-            public void onResponse(Call<List<CathegoryModel>> call, Response<List<CathegoryModel>> response) {
-                if (!response.isSuccessful()){
-
-
-                    Log.d("not successfuly", ""+response.errorBody());
-
-                    return;
-
-                }
-
-                cathegoryMod = response.body();
-
-                cathegoryMod.get(0).getId();
-
-                recycler = view.findViewById(R.id.recycler);
-
-                Log.d("view", ""+cathegoryMod.size());
-                emojiAdapter = new EmojiAdapter(getContext(), cathegoryMod);
-                recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-                recycler.setAdapter(emojiAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<CathegoryModel>> call, Throwable t) {
-
-                Log.d("cathenotshown", ""+t.getMessage());
-            }
-        });
     }
 
 }

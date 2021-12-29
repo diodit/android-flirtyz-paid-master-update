@@ -1,6 +1,8 @@
 package com.owo.phlurtyzpaid.api.models;
 
-public class UserStatus {
+import java.util.List;
+
+public class UserStatus{
     private int id;
     private String name;
     private int price;
@@ -8,13 +10,41 @@ public class UserStatus {
     private String image;
     public UpdatedAt updatedAt;
     public CreatedAt createdAt;
-    private String deletedAt;
+    private DeletedAt deletedAt;
     private String status;
     private Cathegory category;
+    private CreatedBy createdBy;
+    private List<EmojiModel> emojis;
+
 
 
     public UserStatus( ) {
     }
+
+    public DeletedAt getDeletedAt() {
+        return deletedAt;
+    }
+
+    public List<EmojiModel> getEmojis() {
+        return emojis;
+    }
+
+    public void setEmojis(List<EmojiModel> emojis) {
+        this.emojis = emojis;
+    }
+
+    public void setDeletedAt(DeletedAt deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public CreatedBy getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(CreatedBy createdBy) {
+        this.createdBy = createdBy;
+    }
+
 
     public int getId() {
         return id;
@@ -70,14 +100,6 @@ public class UserStatus {
 
     public void setCreatedAt(CreatedAt createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public String getDeletedAt() {
-        return deletedAt;
-    }
-
-    public void setDeletedAt(String deletedAt) {
-        this.deletedAt = deletedAt;
     }
 
     public String getStatus() {

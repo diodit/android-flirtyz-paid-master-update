@@ -1,5 +1,6 @@
 package com.owo.phlurtyzpaid.api.interfaces;
 
+import com.owo.phlurtyzpaid.api.models.UserStatus;
 import com.owo.phlurtyzpaid.model.CathegoryModel;
 import com.owo.phlurtyzpaid.model.LoginModel;
 import com.owo.phlurtyzpaid.model.LoginResponse;
@@ -35,5 +36,10 @@ public interface UserService {
 
     @GET("api/category/getInAppCategories")
     Call<List<CathegoryModel>> getCathegorieModel();
+
+    @GET("api/emojiGroup/getAllWIthStatus?status=ACCEPTED")
+    Call<List<UserStatus>> getUserStatus (@Header("Authorization")String token);
+
+
 
 }

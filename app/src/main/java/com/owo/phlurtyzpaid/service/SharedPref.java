@@ -7,6 +7,7 @@ public class SharedPref {
 
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
+    public static final String TOKEN = "token";
     private static SharedPref pref;
     private final SharedPreferences sharedPref;
 
@@ -30,6 +31,16 @@ public class SharedPref {
         editor.putString(key, email);
         editor.apply();
 
+    }
+
+    public String getStoredToken(){
+        return  sharedPref.getString(TOKEN, null);
+    }
+
+    public void setStoredToken(String key, String token){
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(key, token);
+        editor.apply();
     }
 
     public String getStoredPassword() {
