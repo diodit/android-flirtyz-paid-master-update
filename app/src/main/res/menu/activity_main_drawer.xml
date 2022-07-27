@@ -30,15 +30,19 @@
             android:icon="@drawable/ic_suggest_black_24dp"
             android:title="Suggest" />
 
-        <item
-            android:id="@+id/nav_account"
-            android:icon="@drawable/ic_lock_open_black_24dp"
-            android:title="My Account" />
+<!--        <item-->
+<!--            android:id="@+id/nav_account"-->
+<!--            android:icon="@drawable/ic_lock_open_black_24dp"-->
+<!--            android:title="My Account" />-->
 
-        <item
-            android:id="@+id/nav_myaccount"
-            android:icon="@drawable/ic_lock_open_black_24dp"
-            android:title="My Account" />
+<!--        <item-->
+<!--            android:id="@+id/nav_myaccount"-->
+<!--            android:icon="@drawable/ic_lock_open_black_24dp"-->
+<!--            android:title="My Account" />-->
+
+
+
+
 
     </group>
 

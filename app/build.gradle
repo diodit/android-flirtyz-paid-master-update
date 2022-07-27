@@ -19,12 +19,12 @@ android {
 //            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField('String','URL','"http://44.242.125.65/"');
+            buildConfigField('String','URL','"http://34.213.79.205/"');
 
         }
         debug {
 
-            buildConfigField('String','URL','"http://44.242.125.65/"');
+            buildConfigField('String','URL','"http://34.213.79.205/"');
             signingConfig signingConfigs.debug
         }
     }

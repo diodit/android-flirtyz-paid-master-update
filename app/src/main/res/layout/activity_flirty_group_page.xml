@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="130dp"
                     android:layout_weight="1"
-                    android:src="@drawable/profilepic"/>
+                    android:src="@drawable/avataprofilee"/>
 
                 <LinearLayout
                     android:id="@+id/groupName"

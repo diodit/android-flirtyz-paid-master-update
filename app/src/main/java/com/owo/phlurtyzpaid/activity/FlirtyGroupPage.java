@@ -97,7 +97,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
     }
 
     public void Action(View view) {
-        Intent intent =  new Intent(FlirtyGroupPage.this, ActionScreen.class);
+        Intent intent =  new Intent(FlirtyGroupPage.this, CheckoutActivity.class);
         startActivity(intent);
     }
 }

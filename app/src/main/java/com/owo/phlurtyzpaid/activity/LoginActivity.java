@@ -25,7 +25,7 @@ import org.apache.commons.lang3.StringUtils;
 public class LoginActivity extends BaseActivity {
 
     private Context context;
-    private Activity activity;
+    private Activity activity_login;
 
 
 

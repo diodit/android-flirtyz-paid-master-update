@@ -45,6 +45,15 @@
     <string name="user_offline">Offline</string>
 
     <string name="follow_user">FOLLOW</string>
+    <string name="checkout_message"> How to purchase the Paid In App Emojis. In order
+    to receive your download link in a phone text to
+    the number you enter on the payment page.</string>
+
+    <string name="checkout_follow">Please follow the directions below</string>
+
+    <string name="checkout_message2">\n 1. Click on the Make Payment Button. \n\n 2. Fill out the credit card form. \n\n 3. Enter your phone number to receive the download link \n\n 4. You will receive a text message to your mobile phone \n with a link to receive the uncensored Flirtyz App.</string>
+
+
 
     <string name="posts_label">posts</string>
     <string name="followers_label">followers</string>

@@ -194,20 +194,23 @@ public class WelcomeScreen extends AppCompatActivity implements NavigationView.O
 
             startActivity(new Intent(WelcomeScreen.this, SuggestionActivity.class));
 
-        } else if (id == R.id.nav_account) {
+        }
 
-            if(prefs.isLoggedIn()){
-                startActivity(new Intent(WelcomeScreen.this, ProfileActivity.class));
-            }else{
-                startActivity(new Intent(WelcomeScreen.this, LoginActivity.class));
-            }
-
-
-        } else if (id == R.id.nav_myaccount){
-            Intent intent = new Intent(WelcomeScreen.this, GetStarted.class);
-            startActivity(intent);
-
-        } else if (id == R.id.Inapp) {
+//        else if (id == R.id.nav_account) {
+//
+//            if(prefs.isLoggedIn()){
+//                startActivity(new Intent(WelcomeScreen.this, ProfileActivity.class));
+//            }else{
+//                startActivity(new Intent(WelcomeScreen.this, LoginActivity.class));
+//            }
+//
+//
+//        } else if (id == R.id.nav_myaccount){
+//            Intent intent = new Intent(WelcomeScreen.this, GetStarted.class);
+//            startActivity(intent);
+//
+//        }
+        else if (id == R.id.Inapp) {
             Intent intent = new Intent(WelcomeScreen.this, FlirtyGroupPage.class);
             startActivity(intent);
 

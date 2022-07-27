@@ -154,20 +154,24 @@ public class ActionScreen extends AppCompatActivity implements NavigationView.On
 
             startActivity(new Intent(ActionScreen.this, SuggestionActivity.class));
 
-        } else if (id == R.id.nav_account) {
+        }
 
-            if(prefs.isLoggedIn()){
-                startActivity(new Intent(ActionScreen.this, ProfileActivity.class));
-            }else{
-                startActivity(new Intent(ActionScreen.this, LoginActivity.class));
-            }
+//        else if (id == R.id.nav_account) {
+//
+//            if(prefs.isLoggedIn()){
+//                startActivity(new Intent(ActionScreen.this, ProfileActivity.class));
+//            }else{
+//                startActivity(new Intent(ActionScreen.this, LoginActivity.class));
+//            }
+//
+//
+//        } else if (id == R.id.nav_myaccount){
+//            Intent intent = new Intent(ActionScreen.this, GetStarted.class);
+//            startActivity(intent);
+//
+//        }
 
-
-        } else if (id == R.id.nav_myaccount){
-            Intent intent = new Intent(ActionScreen.this, GetStarted.class);
-            startActivity(intent);
-
-        } else if (id == R.id.Inapp) {
+        else if (id == R.id.Inapp) {
             Intent intent = new Intent(ActionScreen.this, FlirtyGroupPage.class);
             startActivity(intent);
 
