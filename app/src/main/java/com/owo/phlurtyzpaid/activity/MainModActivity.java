@@ -376,7 +376,8 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
 //        }
         else if (id == R.id.Inapp) {
 
-            Intent intent = new Intent(MainModActivity.this, FlirtyGroupPage.class);
+//          Intent intent = new Intent(MainModActivity.this, FlirtyGroupPage.class);
+            Intent intent = new Intent(MainModActivity.this, FlirtyappInApp.class);
             startActivity(intent);
 
         }
