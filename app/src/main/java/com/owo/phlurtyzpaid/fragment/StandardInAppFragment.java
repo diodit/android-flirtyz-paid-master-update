@@ -1,5 +1,6 @@
 package com.owo.phlurtyzpaid.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.owo.phlurtyzpaid.R;
+import com.owo.phlurtyzpaid.activity.FlirtyGroupPage;
+import com.owo.phlurtyzpaid.activity.MakePayment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +25,9 @@ public class StandardInAppFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -55,12 +62,43 @@ public class StandardInAppFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_standard_in_app, container, false);
+        View view =  inflater.inflate(R.layout.fragment_standard_in_app, container, false);
+        LinearLayout linearLayout1 = view.findViewById(R.id.firstlayout);
+        LinearLayout linearLayout2 = view.findViewById(R.id.seclayout);
+        LinearLayout linearLayout3 = view.findViewById(R.id.thirdlayou);
+        LinearLayout linearLayout4 = view.findViewById(R.id.fourthlayou);
+
+
+        linearLayout1.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getContext(), FlirtyGroupPage.class);
+            startActivity(intent);
+        });
+
+        linearLayout2.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getContext(), FlirtyGroupPage.class);
+            startActivity(intent);
+        });
+
+
+        linearLayout3.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getContext(), FlirtyGroupPage.class);
+            startActivity(intent);
+        });
+
+        linearLayout4.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getContext(), FlirtyGroupPage.class);
+            startActivity(intent);
+        });
+        return view;
     }
 }

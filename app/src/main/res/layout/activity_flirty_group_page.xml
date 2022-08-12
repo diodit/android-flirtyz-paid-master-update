@@ -78,29 +78,80 @@
 
             </LinearLayout>
 
-            <FrameLayout
+            <LinearLayout
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_width="match_parent"
+
+                android:background="@drawable/customborder"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="40dp"
-                    android:visibility="gone"
-                    android:src="@drawable/ic_baseline_lock_24"
-                    />
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler1"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
-                    android:scrollbarStyle="outsideInset"
-                    android:scrollbars="horizontal">
+                    android:layout_height="wrap_content"
 
-                </androidx.recyclerview.widget.RecyclerView>
-            </FrameLayout>
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/emojigroup" />
+
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Flirtyz Group Name" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="By Creators Name"
+                    android:textColor="@color/colorPrimaryDark"/>
+            </LinearLayout>
+
+
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_marginTop="40dp"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:src="@drawable/ic_baseline_lock_24"-->
+<!--                    />-->
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recycler1"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:scrollbarStyle="outsideInset"-->
+<!--                    android:scrollbars="horizontal">-->
+
+<!--                </androidx.recyclerview.widget.RecyclerView>-->
+<!--            </FrameLayout>-->
 
 
             <Button
@@ -126,52 +177,160 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
 
-            <FrameLayout
+
+
+
+
+
+            <LinearLayout
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_width="match_parent"
+
+                android:background="@drawable/customborder"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="40dp"
-                    android:visibility="gone"
-
-                    android:src="@drawable/ic_baseline_lock_24"
-                    />
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler2"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
-                    android:scrollbarStyle="outsideInset"
-                    android:scrollbars="horizontal"/>
-            </FrameLayout>
+                    android:layout_height="wrap_content"
+
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/emojigroup" />
 
 
-            <FrameLayout
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Flirtyz Group Name" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="By Creators Name"
+                    android:textColor="@color/colorPrimaryDark"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_width="match_parent"
+
+                android:background="@drawable/customborder"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="40dp"
-                    android:visibility="gone"
-
-                    android:src="@drawable/ic_baseline_lock_24"
-                    />
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler3"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
-                    android:scrollbarStyle="outsideInset"
-                    android:scrollbars="horizontal"/>
-            </FrameLayout>
+                    android:layout_height="wrap_content"
+
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/emojigroup" />
+
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Flirtyz Group Name" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="By Creators Name"
+                    android:textColor="@color/colorPrimaryDark"/>
+            </LinearLayout>
+
+
+
+            <!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_marginTop="40dp"-->
+<!--                    android:visibility="gone"-->
+
+<!--                    android:src="@drawable/ic_baseline_lock_24"-->
+<!--                    />-->
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recycler2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:scrollbarStyle="outsideInset"-->
+<!--                    android:scrollbars="horizontal"/>-->
+<!--            </FrameLayout>-->
+
+
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_marginTop="40dp"-->
+<!--                    android:visibility="gone"-->
+
+<!--                    android:src="@drawable/ic_baseline_lock_24"-->
+<!--                    />-->
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recycler3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:scrollbarStyle="outsideInset"-->
+<!--                    android:scrollbars="horizontal"/>-->
+<!--            </FrameLayout>-->
 
 
         </LinearLayout>

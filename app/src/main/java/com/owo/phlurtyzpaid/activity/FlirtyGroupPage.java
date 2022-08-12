@@ -33,7 +33,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flirty_group_page);
         secondRecycler = findViewById(R.id.recycler2);
-        thirdRecyclerview = findViewById(R.id.recycler3);
+//        thirdRecyclerview = findViewById(R.id.recycler3);
 
         cathegoryMod = new ArrayList<>();
         secondScreen();
@@ -66,20 +66,20 @@ public class FlirtyGroupPage extends AppCompatActivity {
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplication());
                 linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-                recyclerView.setLayoutManager(linearLayoutManager);
-                recyclerView.setAdapter(flirtyAdapter);
+//                recyclerView.setLayoutManager(linearLayoutManager);
+//                recyclerView.setAdapter(flirtyAdapter);
 
 
-                LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getApplication());
-                linearLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
-                secondRecycler.setLayoutManager(linearLayoutManager1);
-                secondRecycler.setAdapter(flirtyAdapter);
-
-
-                LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getApplication());
-                linearLayoutManager2.setOrientation(RecyclerView.HORIZONTAL);
-                secondRecycler.setLayoutManager(linearLayoutManager2);
-                secondRecycler.setAdapter(flirtyAdapter);
+//                LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getApplication());
+//                linearLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
+//                secondRecycler.setLayoutManager(linearLayoutManager1);
+//                secondRecycler.setAdapter(flirtyAdapter);
+//
+//
+//                LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getApplication());
+//                linearLayoutManager2.setOrientation(RecyclerView.HORIZONTAL);
+//                secondRecycler.setLayoutManager(linearLayoutManager2);
+//                secondRecycler.setAdapter(flirtyAdapter);
 
 
 
