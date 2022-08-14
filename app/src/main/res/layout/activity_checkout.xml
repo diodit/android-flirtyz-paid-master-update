@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -40,7 +39,10 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginEnd="20dp">
 
                 <ImageView
                     android:layout_width="80dp"
@@ -52,10 +54,10 @@
 
                 <ImageView
                     android:id="@+id/imb"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="50dp"
                     android:layout_weight="1"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/emojigroup" />
 
 
@@ -79,12 +81,14 @@
                 android:id="@+id/LinearLayout04"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Flirtyz Group Name"
                     android:textColor="@color/black">
@@ -94,10 +98,10 @@
                 <TextView
 
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
 
-                    android:layout_marginLeft="40dp"
                     android:layout_weight="1"
+                    android:gravity="right"
                     android:text="By: Creators Name"
                     android:textColor="@color/red">
 
@@ -108,13 +112,16 @@
                 android:id="@+id/LinearLayout03"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+               >
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="InApp Fee: $1.99"
                     android:textColor="@color/black">
@@ -122,15 +129,12 @@
                 </TextView>
 
                 <TextView
-
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
-
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
                     android:layout_weight="1"
+                    android:gravity="right|end"
                     android:text="Total Fee: $1.99"
-
                     android:textColor="@color/bright_sun">
 
                 </TextView>
@@ -140,13 +144,14 @@
                 android:id="@+id/LinearLayout02"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
 
                 <Button
                     android:id="@+id/Button02"
                     android:layout_width="100dp"
                     android:layout_height="60dp"
-                    android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:background="@drawable/arrow_shape"
 
@@ -160,7 +165,6 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_signup"
                     android:text="Check Out">
@@ -174,6 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/checkout_follow"
                 android:textColor="@color/red"
                 android:textStyle="bold" />
@@ -182,7 +187,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/checkout_message"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -192,6 +198,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/checkout_message2"
                 android:textColor="@color/black"
                 android:textStyle="bold" />

@@ -9,6 +9,15 @@ public class AllCategory {
     public String version;
     public CreatedAt createdAt;
     public UpdatedAt updatedAt;
+    private double price;
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public int getId() {
         return id;

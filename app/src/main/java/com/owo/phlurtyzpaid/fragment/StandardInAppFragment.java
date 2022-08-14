@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.activity.FlirtyGroupPage;
-import com.owo.phlurtyzpaid.activity.MakePayment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,7 +72,7 @@ public class StandardInAppFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_standard_in_app, container, false);
-        LinearLayout linearLayout1 = view.findViewById(R.id.firstlayout);
+        LinearLayout linearLayout1 = view.findViewById(R.id.firstlayoutaction);
         LinearLayout linearLayout2 = view.findViewById(R.id.seclayout);
         LinearLayout linearLayout3 = view.findViewById(R.id.thirdlayou);
         LinearLayout linearLayout4 = view.findViewById(R.id.fourthlayou);
