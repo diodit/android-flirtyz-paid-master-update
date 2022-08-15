@@ -145,7 +145,7 @@ public class ActionInAppFragment extends Fragment {
                             .into(imageView2);
 
 
-                    textView3.setText(Double.toString(fetchedData.get(1).getPrice()));
+                    textView3.setText("$"+(fetchedData.get(1).getPrice()));
 
                     Log.d("InApp",String.valueOf(fetchedData.size()));
 

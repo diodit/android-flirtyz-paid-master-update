@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import com.owo.phlurtyzpaid.R;
 
@@ -29,6 +30,8 @@ public class FlirtyGroupPage extends AppCompatActivity {
     List<CathegoryModel> cathegoryMod;
     private RecyclerView recyclerView, secondRecycler, thirdRecyclerview;
     private FlirtyAdapter flirtyAdapter;
+    private Button btn_purchase;
+    private double price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +41,19 @@ public class FlirtyGroupPage extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Flirty Group");
+        btn_purchase = findViewById(R.id.btn_purchase);
+
+
+
 //       secondRecycler = findViewById(R.id.recycler2);
 //       thirdRecyclerview = findViewById(R.id.recycler3);
 
         cathegoryMod = new ArrayList<>();
         secondScreen();
 
-        double price = getIntent().getDoubleExtra("price",0);
+        price = getIntent().getDoubleExtra("price",0);
+        btn_purchase.setText("Purchase for $"+price);
 
     }
 
@@ -116,6 +125,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
 
     public void Action(View view) {
         Intent intent =  new Intent(FlirtyGroupPage.this, CheckoutActivity.class);
+        intent.putExtra("price", price);
         startActivity(intent);
     }
 }

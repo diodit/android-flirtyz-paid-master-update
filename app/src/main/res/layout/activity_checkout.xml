@@ -133,6 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_weight="1"
+                    android:id="@+id/totalfee"
                     android:gravity="right|end"
                     android:text="Total Fee: $1.99"
                     android:textColor="@color/bright_sun">
