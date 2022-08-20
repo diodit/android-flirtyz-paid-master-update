@@ -101,6 +101,7 @@ public class ActionInAppFragment extends Fragment {
                 }else{
                     Intent intent = new Intent(getContext(), FlirtyGroupPage.class);
                     intent.putExtra("price",fetchedData.get(0).getPrice());
+                    intent.putExtra("folderName",fetchedData.get(0).getFolderName());
                     startActivity(intent);
                 }
             }
@@ -128,6 +129,7 @@ public class ActionInAppFragment extends Fragment {
                         allCategory.setId(fetchd.getId());
                         allCategory.setFile(fetchd.getFile());
                         allCategory.setPrice(fetchd.getPrice()/100);
+                        allCategory.setFolderName(fetchd.getFolderName());
                         imageObjects.add(allCategory);
                     }
 

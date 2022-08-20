@@ -32,6 +32,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
     private FlirtyAdapter flirtyAdapter;
     private Button btn_purchase;
     private double price;
+    //private String folderName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
         secondScreen();
 
         price = getIntent().getDoubleExtra("price",0);
+//        folderName = getIntent().getStringExtra("folderName");
         btn_purchase.setText("Purchase for $"+price);
 
     }
@@ -126,6 +128,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
     public void Action(View view) {
         Intent intent =  new Intent(FlirtyGroupPage.this, CheckoutActivity.class);
         intent.putExtra("price", price);
+        intent.putExtra("folder",getIntent().getStringExtra("folderName"));
         startActivity(intent);
     }
 }

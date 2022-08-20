@@ -9,7 +9,16 @@ public class AllCategory {
     public String version;
     public CreatedAt createdAt;
     public UpdatedAt updatedAt;
+    private String folderName;
     private double price;
+
+    public String getFolderName() {
+        return folderName;
+    }
+
+    public void setFolderName(String folderName) {
+        this.folderName = folderName;
+    }
 
     public double getPrice() {
         return price;

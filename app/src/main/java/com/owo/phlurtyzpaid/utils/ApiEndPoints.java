@@ -27,4 +27,6 @@ public class ApiEndPoints {
     public static final String CategoryByGroupApp = SPECIALS_BASE_URL + "api/public/api/emojiGroup/getCategoryGroupEmoji/37";
 
     public static final String PaymentURL = "https://www.diodot.com/phlurtyzgatewayFreeApp/payinapp.php";
+
+    public static final String paymentLink = "http://34.213.79.205/payment/phlurtyzgateway/payinapp.php?folderName=";
 }
