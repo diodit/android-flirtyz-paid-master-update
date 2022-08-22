@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.utils.ApiEndPoints;
@@ -22,6 +24,8 @@ public class CheckoutActivity extends AppCompatActivity {
     private Button cancel, checkout;
     private TextView totalFee;
     private String folderName;
+    private ImageView imageView1, imageView2;
+    private TextView textView3;
 
 
     @Override
@@ -31,13 +35,27 @@ public class CheckoutActivity extends AppCompatActivity {
         cancel= findViewById(R.id.Button02);
         checkout = findViewById(R.id.Button03);
         totalFee = findViewById(R.id.totalfee);
+        textView3 = findViewById(R.id.textView3);
         double price = getIntent().getDoubleExtra("price",0);
         folderName = getIntent().getStringExtra("folder");
 
+        String image_one = getIntent().getStringExtra("imageone");
+        String image_two = getIntent().getStringExtra("imagetwo");
+
+
+        Log.d("image_one", image_one);
+        Log.d("image_two", image_two);
         if(price != 0){
             totalFee.setText("Total Fee: $"+totalFee(price));
         }
 
+        if(image_one != null && image_two != null){
+            imageView1 = findViewById(R.id.imageone);
+            Glide.with(this).load(image_one).into(imageView1);
+            imageView2 = findViewById(R.id.imagetwo);
+            Glide.with(this).load(image_two).into(imageView2);
+            textView3.setText("$"+price);
+        }
 
 
 

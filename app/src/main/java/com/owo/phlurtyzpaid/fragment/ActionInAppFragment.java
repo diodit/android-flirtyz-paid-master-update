@@ -102,6 +102,8 @@ public class ActionInAppFragment extends Fragment {
                     Intent intent = new Intent(getContext(), FlirtyGroupPage.class);
                     intent.putExtra("price",fetchedData.get(0).getPrice());
                     intent.putExtra("folderName",fetchedData.get(0).getFolderName());
+                    intent.putExtra("imageone","http://34.213.79.205/"+fetchedData.get(0).getFile());
+                    intent.putExtra("imagetwo","http://34.213.79.205/"+fetchedData.get(1).getFile());
                     startActivity(intent);
                 }
             }

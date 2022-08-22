@@ -11,7 +11,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.owo.phlurtyzpaid.R;
 
 import com.owo.phlurtyzpaid.adapter.FlirtyAdapter;
@@ -32,7 +35,10 @@ public class FlirtyGroupPage extends AppCompatActivity {
     private FlirtyAdapter flirtyAdapter;
     private Button btn_purchase;
     private double price;
+    private ImageView imageView1, imageView2;
+    private TextView textView3;
     //private String folderName;
+    String image_two, image_one;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +52,30 @@ public class FlirtyGroupPage extends AppCompatActivity {
         btn_purchase = findViewById(R.id.btn_purchase);
 
 
+        imageView1 = findViewById(R.id.imageone);
+        imageView2 = findViewById(R.id.imagetwo);
+        textView3 = findViewById(R.id.textView3);
+        image_one = getIntent().getStringExtra("imageone");
+        image_two = getIntent().getStringExtra("imagetwo");
+        price = getIntent().getDoubleExtra("price",0);
 
 //       secondRecycler = findViewById(R.id.recycler2);
 //       thirdRecyclerview = findViewById(R.id.recycler3);
 
+
+
+        if(image_one != null && image_two != null){
+            Glide.with(this).load(image_one).into(imageView1);
+            Glide.with(this).load(image_two).into(imageView2);
+            textView3.setText("$"+price);
+        }
+
+
+
         cathegoryMod = new ArrayList<>();
         secondScreen();
 
-        price = getIntent().getDoubleExtra("price",0);
+
 //        folderName = getIntent().getStringExtra("folderName");
         btn_purchase.setText("Purchase for $"+price);
 
@@ -128,6 +150,8 @@ public class FlirtyGroupPage extends AppCompatActivity {
     public void Action(View view) {
         Intent intent =  new Intent(FlirtyGroupPage.this, CheckoutActivity.class);
         intent.putExtra("price", price);
+        intent.putExtra("imageone", image_one);
+        intent.putExtra("imagetwo", image_two);
         intent.putExtra("folder",getIntent().getStringExtra("folderName"));
         startActivity(intent);
     }
