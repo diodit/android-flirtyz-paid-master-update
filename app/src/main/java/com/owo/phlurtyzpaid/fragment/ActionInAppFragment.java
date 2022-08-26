@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +21,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.activity.FlirtyGroupPage;
+import com.owo.phlurtyzpaid.adapter.InAppActionAdapter;
+import com.owo.phlurtyzpaid.adapter.PurchaseAdapter;
 import com.owo.phlurtyzpaid.api.RetrofitClientInstance;
 import com.owo.phlurtyzpaid.api.interfaces.ApiCallback;
 import com.owo.phlurtyzpaid.api.interfaces.GetForAllCategories;
@@ -45,7 +50,8 @@ public class ActionInAppFragment extends Fragment {
     private ImageView imageView1, imageView2;
     private TextView textView3;
     private LinearLayout firstlayoutaction;
-
+    private RecyclerView recyclerView;
+    private InAppActionAdapter inAppActionAdapter;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -89,31 +95,13 @@ public class ActionInAppFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_action_in_app, container, false);
-        imageView1 = view.findViewById(R.id.imageone);
-        imageView2 = view.findViewById(R.id.imagetwo);
-        textView3 = view.findViewById(R.id.textView3);
-        firstlayoutaction = view.findViewById(R.id.firstlayoutaction);
-
-        firstlayoutaction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(fetchedData.size()<1){
-                }else{
-                    Intent intent = new Intent(getContext(), FlirtyGroupPage.class);
-                    intent.putExtra("price",fetchedData.get(0).getPrice());
-                    intent.putExtra("folderName",fetchedData.get(0).getFolderName());
-                    intent.putExtra("imageone","http://34.213.79.205/"+fetchedData.get(0).getFile());
-                    intent.putExtra("imagetwo","http://34.213.79.205/"+fetchedData.get(1).getFile());
-                    startActivity(intent);
-                }
-            }
-        });
+        recyclerView = view.findViewById(R.id.recyclerview);
         getInAppGroup(getContext());
         return view;
     }
 
     public void getInAppGroup(final Context context){
-//        Call<List<AllCategory>> call = RetrofitClientInstance.getRetrofitFlirtyInstance().create(GetForAllCategories.class).getInApp(ApiEndPoints.CategoryByGroupApp);
+
 
 
         Call<List<AllCategory>> call = RetrofitClientInstance.getRetrofitFlirtyInstance().create(GetForAllCategories.class).getInApp(ApiEndPoints.CategoryByGroupApp);
@@ -135,23 +123,21 @@ public class ActionInAppFragment extends Fragment {
                         imageObjects.add(allCategory);
                     }
 
-                    fetchedData = imageObjects;
+                    inAppActionAdapter = new InAppActionAdapter(imageObjects,getContext());
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                    recyclerView.setAdapter(inAppActionAdapter);
 
-                            Glide.with(context)
-                            .load("http://34.213.79.205/"+fetchedData.get(0).getFile())
-                            .into(imageView1);
+                    inAppActionAdapter.setListenerForAdapter(position -> {
+                        Intent intent = new Intent(getContext(), FlirtyGroupPage.class);
+                        AllCategory category = imageObjects.get(position);
+                        intent.putExtra("price",category.getPrice());
+                        intent.putExtra("folderName",category.getFolderName());
+                        intent.putExtra("imageone","http://34.213.79.205/"+category.getFile());
+                        intent.putExtra("imagetwo","http://34.213.79.205/"+category.getFile());
+                        startActivity(intent);
+                    });
 
-                            Log.d("URLIMAGE","http://34.213.79.205/"+fetchedData.get(0).getFile());
 
-
-                    Glide.with(context)
-                            .load("http://34.213.79.205/"+fetchedData.get(1).getFile())
-                            .into(imageView2);
-
-
-                    textView3.setText("$"+(fetchedData.get(1).getPrice()));
-
-                    Log.d("InApp",String.valueOf(fetchedData.size()));
 
                     if(response.body().size() < 1){
                         Toast.makeText(context, "No categories found.", Toast.LENGTH_SHORT).show();
@@ -175,44 +161,7 @@ public class ActionInAppFragment extends Fragment {
             }
         });
 
-//        call.enqueue(new retrofit2.Callback<List<AllCategory>>() {
-//            @Override
-//            public void onResponse(Call<List<AllCategory>> call, Response<List<AllCategory>> response) {
-//
-//                if (response.isSuccessful()) {
-//
-//                    ArrayList<AllCategory> imageObjects = new ArrayList<>();
-//
-//                    for(AllCategory fetchd : response.body()) {
-//                        AllCategory allCategory = new AllCategory();
-//                        allCategory.setName(fetchd.getName());
-//                        allCategory.setId(fetchd.getId());
-//
-//                        imageObjects.add(allCategory);
-//                    }
-//                    fetchedData = imageObjects;
-//
-//
-//                    if(response.body().size() < 1){
-//                        Toast.makeText(context, "No categories found.", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                    callback.onResponse(response.body() != null);
-//                }else{
-//                    Toast.makeText(context, "An error occurred while fetching categories." + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
-//                    callback.onResponse(false);
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<AllCategory>> call, Throwable t) {
-//                call.cancel();
-//                Log.e("error", "onFailure: ",t );
-//                Toast.makeText(context, "Connection Error.", Toast.LENGTH_SHORT).show();
-//                callback.onResponse(false);
-//            }
-//        });
+
 
     }
 }

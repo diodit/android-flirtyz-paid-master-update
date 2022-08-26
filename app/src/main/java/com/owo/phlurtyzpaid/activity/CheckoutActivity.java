@@ -21,21 +21,17 @@ import java.net.URISyntaxException;
 
 public class CheckoutActivity extends AppCompatActivity {
 
-    private Button cancel, checkout;
-    private TextView totalFee;
     private String folderName;
-    private ImageView imageView1, imageView2;
-    private TextView textView3;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        cancel= findViewById(R.id.Button02);
-        checkout = findViewById(R.id.Button03);
-        totalFee = findViewById(R.id.totalfee);
-        textView3 = findViewById(R.id.textView3);
+        Button cancel = findViewById(R.id.Button02);
+        Button checkout = findViewById(R.id.Button03);
+        TextView totalFee = findViewById(R.id.totalfee);
+        TextView textView3 = findViewById(R.id.textView3);
         double price = getIntent().getDoubleExtra("price",0);
         folderName = getIntent().getStringExtra("folder");
 
@@ -43,16 +39,15 @@ public class CheckoutActivity extends AppCompatActivity {
         String image_two = getIntent().getStringExtra("imagetwo");
 
 
-        Log.d("image_one", image_one);
-        Log.d("image_two", image_two);
+
         if(price != 0){
             totalFee.setText("Total Fee: $"+totalFee(price));
         }
 
-        if(image_one != null && image_two != null){
-            imageView1 = findViewById(R.id.imageone);
+        if(image_two != null){
+            ImageView imageView1 = findViewById(R.id.imageone);
             Glide.with(this).load(image_one).into(imageView1);
-            imageView2 = findViewById(R.id.imagetwo);
+            ImageView imageView2 = findViewById(R.id.imagetwo);
             Glide.with(this).load(image_two).into(imageView2);
             textView3.setText("$"+price);
         }
