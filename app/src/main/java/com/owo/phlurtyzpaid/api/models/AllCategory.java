@@ -1,5 +1,9 @@
 package com.owo.phlurtyzpaid.api.models;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class AllCategory {
 
     public int id;
@@ -10,6 +14,8 @@ public class AllCategory {
     public CreatedAt createdAt;
     public UpdatedAt updatedAt;
     private String folderName;
+    @SerializedName("emojis")
+    private List<EmojiModel> emojiModel;
     private double price;
 
     public String getFolderName() {
@@ -67,6 +73,15 @@ public class AllCategory {
     public void setVersion(String version) {
         this.version = version;
     }
+
+    public List<EmojiModel> getEmojiModel() {
+        return emojiModel;
+    }
+
+    public void setEmojiModel(List<EmojiModel> emojiModel) {
+        this.emojiModel = emojiModel;
+    }
+
 
     public CreatedAt getCreatedAt() {
         return createdAt;

@@ -36,18 +36,33 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
     public void setListenerForAdapter(InAppActionAdapterListener listener){
         this.listener = listener;
     }
+
     @Override
     public void onBindViewHolder(@NonNull InAppActionAdapterViewHolder holder, int position) {
 
         AllCategory allCategory = allCategoryList.get(position);
-        holder.price.setText("$"+String.valueOf(allCategory.getPrice()));
+        holder.price.setText("$"+(allCategory.getPrice()));
+        holder.groupName.setText(allCategory.getName());
         Glide.with(context)
-                .load("http://34.213.79.205/"+allCategory.getFile())
+                .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(0).getFile())
                 .into(holder.imageone);
 
         Glide.with(context)
-                .load("http://34.213.79.205/"+allCategory.getFile())
+                .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(1).getFile())
                 .into(holder.imagetwo);
+
+        if(allCategory.getEmojiModel().size()>2){
+            Glide.with(context)
+                    .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(2).getFile())
+                    .into(holder.imagethree);
+        }
+
+        if(allCategory.getEmojiModel().size()>3){
+            Glide.with(context)
+                    .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(3).getFile())
+                    .into(holder.imagefour);
+        }
+
 
 
     }
@@ -59,14 +74,18 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
 
     public class InAppActionAdapterViewHolder extends RecyclerView.ViewHolder {
         LinearLayout linearLayout;
-        ImageView imageone,imagetwo;
-        TextView price;
+        ImageView imageone,imagetwo,imagethree,imagefour;
+        TextView price, groupName;
         public InAppActionAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             linearLayout = itemView.findViewById(R.id.firstlayoutaction);
             imageone = itemView.findViewById(R.id.imageone);
             imagetwo = itemView.findViewById(R.id.imagetwo);
+            imagethree = itemView.findViewById(R.id.imagethree);
+            imagefour = itemView.findViewById(R.id.imagefour);
             price = itemView.findViewById(R.id.textView3);
+            groupName = itemView.findViewById(R.id.groupid);
+
 
             linearLayout.setOnClickListener(view -> {
                 if(listener != null){

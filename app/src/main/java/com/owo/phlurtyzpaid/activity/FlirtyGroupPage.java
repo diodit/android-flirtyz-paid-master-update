@@ -33,12 +33,10 @@ public class FlirtyGroupPage extends AppCompatActivity {
     List<CathegoryModel> cathegoryMod;
     private RecyclerView recyclerView, secondRecycler, thirdRecyclerview;
     private FlirtyAdapter flirtyAdapter;
-    private Button btn_purchase;
     private double price;
-    private ImageView imageView1, imageView2;
-    private TextView textView3;
     //private String folderName;
-    String image_two, image_one;
+    String image_two, image_one, groupName,image_three,image_four;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +47,28 @@ public class FlirtyGroupPage extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Flirty Group");
-        btn_purchase = findViewById(R.id.btn_purchase);
+        Button btn_purchase = findViewById(R.id.btn_purchase);
 
 
-        imageView1 = findViewById(R.id.imageone);
-        imageView2 = findViewById(R.id.imagetwo);
-        textView3 = findViewById(R.id.textView3);
+        ImageView imageView1 = findViewById(R.id.imageone);
+        ImageView imageView2 = findViewById(R.id.imagetwo);
+        ImageView imageView3 = findViewById(R.id.imagethree);
+        ImageView imageView4 = findViewById(R.id.imagefour);
+        TextView textView3 = findViewById(R.id.textView3);
+        TextView groupIdbyName = findViewById(R.id.groupidbyName);
+
+
         image_one = getIntent().getStringExtra("imageone");
-        image_two = getIntent().getStringExtra("imagetwo");
-        price = getIntent().getDoubleExtra("price",0);
 
+        image_two = getIntent().getStringExtra("imagetwo");
+
+        image_three = getIntent().getStringExtra("imagethree");
+
+        image_four = getIntent().getStringExtra("imagefour");
+
+        price = getIntent().getDoubleExtra("price",0);
+        groupName = getIntent().getStringExtra("group_name");
+        groupIdbyName.setText(groupName);
 //       secondRecycler = findViewById(R.id.recycler2);
 //       thirdRecyclerview = findViewById(R.id.recycler3);
 
@@ -69,6 +79,14 @@ public class FlirtyGroupPage extends AppCompatActivity {
             Glide.with(this).load(image_two).into(imageView2);
             textView3.setText("$"+price);
         }
+
+        if(image_three != null && image_four != null){
+            Glide.with(this).load(image_three).into(imageView3);
+            Glide.with(this).load(image_four).into(imageView4);
+
+        }
+
+
 
 
 
@@ -138,7 +156,6 @@ public class FlirtyGroupPage extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<CathegoryModel>> call, Throwable t) {
-
                 Log.d("cathenotshown", ""+t.getMessage());
             }
         });
@@ -150,8 +167,11 @@ public class FlirtyGroupPage extends AppCompatActivity {
     public void Action(View view) {
         Intent intent =  new Intent(FlirtyGroupPage.this, CheckoutActivity.class);
         intent.putExtra("price", price);
+        intent.putExtra("group_name",groupName);
         intent.putExtra("imageone", image_one);
         intent.putExtra("imagetwo", image_two);
+        intent.putExtra("imagethree",image_three);
+        intent.putExtra("imagefour",image_four);
         intent.putExtra("folder",getIntent().getStringExtra("folderName"));
         startActivity(intent);
     }

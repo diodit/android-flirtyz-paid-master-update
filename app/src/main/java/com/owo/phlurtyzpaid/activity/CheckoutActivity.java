@@ -32,11 +32,15 @@ public class CheckoutActivity extends AppCompatActivity {
         Button checkout = findViewById(R.id.Button03);
         TextView totalFee = findViewById(R.id.totalfee);
         TextView textView3 = findViewById(R.id.textView3);
+
         double price = getIntent().getDoubleExtra("price",0);
         folderName = getIntent().getStringExtra("folder");
 
         String image_one = getIntent().getStringExtra("imageone");
         String image_two = getIntent().getStringExtra("imagetwo");
+        String image_three = getIntent().getStringExtra("imagethree");
+        String image_four = getIntent().getStringExtra("imagefour");
+
 
 
 
@@ -50,6 +54,17 @@ public class CheckoutActivity extends AppCompatActivity {
             ImageView imageView2 = findViewById(R.id.imagetwo);
             Glide.with(this).load(image_two).into(imageView2);
             textView3.setText("$"+price);
+        }
+
+
+        if(image_three != null){
+            ImageView imageView3 = findViewById(R.id.imagethree);
+            Glide.with(this).load(image_three).into(imageView3);
+        }
+
+        if(image_four != null){
+            ImageView imageView4 = findViewById(R.id.imagefour);
+            Glide.with(this).load(image_four).into(imageView4);
         }
 
 

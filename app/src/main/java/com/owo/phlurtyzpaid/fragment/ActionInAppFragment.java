@@ -60,14 +60,6 @@ public class ActionInAppFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ActionInAppFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static ActionInAppFragment newInstance(String param1, String param2) {
         ActionInAppFragment fragment = new ActionInAppFragment();
@@ -84,7 +76,6 @@ public class ActionInAppFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
         }
 
         fetchedData = new ArrayList<>();
@@ -120,6 +111,7 @@ public class ActionInAppFragment extends Fragment {
                         allCategory.setFile(fetchd.getFile());
                         allCategory.setPrice(fetchd.getPrice()/100);
                         allCategory.setFolderName(fetchd.getFolderName());
+                        allCategory.setEmojiModel(fetchd.getEmojiModel());
                         imageObjects.add(allCategory);
                     }
 
@@ -132,8 +124,17 @@ public class ActionInAppFragment extends Fragment {
                         AllCategory category = imageObjects.get(position);
                         intent.putExtra("price",category.getPrice());
                         intent.putExtra("folderName",category.getFolderName());
-                        intent.putExtra("imageone","http://34.213.79.205/"+category.getFile());
-                        intent.putExtra("imagetwo","http://34.213.79.205/"+category.getFile());
+                        intent.putExtra("group_name",category.getName());
+                        intent.putExtra("imageone","http://34.213.79.205/"+category.getEmojiModel().get(0).getFile());
+                        intent.putExtra("imagetwo","http://34.213.79.205/"+category.getEmojiModel().get(1).getFile());
+                        if(category.getEmojiModel().size()>2){
+                            intent.putExtra("imagethree","http://34.213.79.205/"+category.getEmojiModel().get(2).getFile());
+                        }
+                        if(category.getEmojiModel().size()>3){
+                            intent.putExtra("imagefour","http://34.213.79.205/"+category.getEmojiModel().get(3).getFile());
+                        }
+
+
                         startActivity(intent);
                     });
 
