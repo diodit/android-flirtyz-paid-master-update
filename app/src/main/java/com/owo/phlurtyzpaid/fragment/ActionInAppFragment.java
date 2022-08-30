@@ -47,9 +47,6 @@ public class ActionInAppFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static ArrayList<AllCategory> fetchedData;
-    private ImageView imageView1, imageView2;
-    private TextView textView3;
-    private LinearLayout firstlayoutaction;
     private RecyclerView recyclerView;
     private InAppActionAdapter inAppActionAdapter;
     // TODO: Rename and change types of parameters
@@ -91,47 +88,49 @@ public class ActionInAppFragment extends Fragment {
         return view;
     }
 
-    public void getInAppGroup(final Context context){
-
+    public void getInAppGroup(final Context context) {
 
 
         Call<List<AllCategory>> call = RetrofitClientInstance.getRetrofitFlirtyInstance().create(GetForAllCategories.class).getInApp(ApiEndPoints.CategoryByGroupApp);
 
-        call.enqueue(new retrofit2.Callback<List<AllCategory>>(){
+        call.enqueue(new retrofit2.Callback<List<AllCategory>>() {
 
             @Override
             public void onResponse(Call<List<AllCategory>> call, Response<List<AllCategory>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     ArrayList<AllCategory> imageObjects = new ArrayList<>();
 
-                    for(AllCategory fetchd : response.body()) {
+                    for (AllCategory fetchd : response.body()) {
                         AllCategory allCategory = new AllCategory();
                         allCategory.setName(fetchd.getName());
                         allCategory.setId(fetchd.getId());
                         allCategory.setFile(fetchd.getFile());
-                        allCategory.setPrice(fetchd.getPrice()/100);
+                        allCategory.setPrice(fetchd.getPrice() / 100);
                         allCategory.setFolderName(fetchd.getFolderName());
                         allCategory.setEmojiModel(fetchd.getEmojiModel());
                         imageObjects.add(allCategory);
                     }
 
-                    inAppActionAdapter = new InAppActionAdapter(imageObjects,getContext());
+                    inAppActionAdapter = new InAppActionAdapter(imageObjects, getContext());
                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                     recyclerView.setAdapter(inAppActionAdapter);
 
                     inAppActionAdapter.setListenerForAdapter(position -> {
                         Intent intent = new Intent(getContext(), FlirtyGroupPage.class);
                         AllCategory category = imageObjects.get(position);
-                        intent.putExtra("price",category.getPrice());
-                        intent.putExtra("folderName",category.getFolderName());
-                        intent.putExtra("group_name",category.getName());
-                        intent.putExtra("imageone","http://34.213.79.205/"+category.getEmojiModel().get(0).getFile());
-                        intent.putExtra("imagetwo","http://34.213.79.205/"+category.getEmojiModel().get(1).getFile());
-                        if(category.getEmojiModel().size()>2){
-                            intent.putExtra("imagethree","http://34.213.79.205/"+category.getEmojiModel().get(2).getFile());
+                        intent.putExtra("price", category.getPrice());
+                        intent.putExtra("folderName", category.getFolderName());
+                        intent.putExtra("group_name", category.getName());
+                        intent.putExtra("imageone", "http://34.213.79.205/" + category.getEmojiModel().get(0).getFile());
+                        if (category.getEmojiModel().size() > 1) {
+                            intent.putExtra("imagetwo", "http://34.213.79.205/" + category.getEmojiModel().get(1).getFile());
                         }
-                        if(category.getEmojiModel().size()>3){
-                            intent.putExtra("imagefour","http://34.213.79.205/"+category.getEmojiModel().get(3).getFile());
+
+                        if (category.getEmojiModel().size() > 2) {
+                            intent.putExtra("imagethree", "http://34.213.79.205/" + category.getEmojiModel().get(2).getFile());
+                        }
+                        if (category.getEmojiModel().size() > 3) {
+                            intent.putExtra("imagefour", "http://34.213.79.205/" + category.getEmojiModel().get(3).getFile());
                         }
 
 
@@ -139,15 +138,14 @@ public class ActionInAppFragment extends Fragment {
                     });
 
 
-
-                    if(response.body().size() < 1){
+                    if (response.body().size() < 1) {
                         Toast.makeText(context, "No categories found.", Toast.LENGTH_SHORT).show();
                     }
 
 //                    callback.onResponse(response.body() != null);
 
 
-                }else{
+                } else {
                     Toast.makeText(context, "An error occurred while fetching categories." + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
 //                    callback.onResponse(false);
                 }
@@ -156,12 +154,11 @@ public class ActionInAppFragment extends Fragment {
             @Override
             public void onFailure(Call<List<AllCategory>> call, Throwable t) {
                 call.cancel();
-                Log.e("error", "onFailure: ",t );
+                Log.e("error", "onFailure: ", t);
                 Toast.makeText(context, "Connection Error.", Toast.LENGTH_SHORT).show();
 //                callback.onResponse(false);
             }
         });
-
 
 
     }

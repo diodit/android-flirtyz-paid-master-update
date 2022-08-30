@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,29 +13,37 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.owo.phlurtyzpaid.R;
 
 import com.owo.phlurtyzpaid.adapter.FlirtyAdapter;
+import com.owo.phlurtyzpaid.adapter.InAppActionAdapter;
+import com.owo.phlurtyzpaid.api.RetrofitClientInstance;
+import com.owo.phlurtyzpaid.api.interfaces.GetForAllCategories;
+import com.owo.phlurtyzpaid.api.models.AllCategory;
 import com.owo.phlurtyzpaid.model.CathegoryModel;
-
-import com.owo.phlurtyzpaid.service.ApiClient;
+import com.owo.phlurtyzpaid.utils.ApiEndPoints;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FlirtyGroupPage extends AppCompatActivity {
     List<CathegoryModel> cathegoryMod;
-    private RecyclerView recyclerView, secondRecycler, thirdRecyclerview;
-    private FlirtyAdapter flirtyAdapter;
+    private RecyclerView recyclerView;
+
     private double price;
+    private ProgressBar progressBar;
     //private String folderName;
+
+    private InAppActionAdapter inAppActionAdapter;
     String image_two, image_one, groupName,image_three,image_four;
 
 
@@ -55,9 +64,10 @@ public class FlirtyGroupPage extends AppCompatActivity {
         ImageView imageView3 = findViewById(R.id.imagethree);
         ImageView imageView4 = findViewById(R.id.imagefour);
         TextView textView3 = findViewById(R.id.textView3);
+
         TextView groupIdbyName = findViewById(R.id.groupidbyName);
 
-
+        progressBar = findViewById(R.id.progress_bar);
         image_one = getIntent().getStringExtra("imageone");
 
         image_two = getIntent().getStringExtra("imagetwo");
@@ -69,15 +79,16 @@ public class FlirtyGroupPage extends AppCompatActivity {
         price = getIntent().getDoubleExtra("price",0);
         groupName = getIntent().getStringExtra("group_name");
         groupIdbyName.setText(groupName);
-//       secondRecycler = findViewById(R.id.recycler2);
-//       thirdRecyclerview = findViewById(R.id.recycler3);
+        recyclerView = findViewById(R.id.recyclerview);
 
+        Log.d("ImageOe",image_one);
+        Log.d("Price",""+price);
 
+        Glide.with(this).load(image_one).into(imageView1);
+        textView3.setText("$"+price);
 
         if(image_one != null && image_two != null){
-            Glide.with(this).load(image_one).into(imageView1);
             Glide.with(this).load(image_two).into(imageView2);
-            textView3.setText("$"+price);
         }
 
         if(image_three != null && image_four != null){
@@ -88,13 +99,10 @@ public class FlirtyGroupPage extends AppCompatActivity {
 
 
 
-
+        getInAppGroup(this);
 
         cathegoryMod = new ArrayList<>();
-        secondScreen();
 
-
-//        folderName = getIntent().getStringExtra("folderName");
         btn_purchase.setText("Purchase for $"+price);
 
     }
@@ -109,57 +117,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void secondScreen(){
 
-        Call<List<CathegoryModel>> listCall = ApiClient.getService().getCathegorieModel();
-        listCall.enqueue(new Callback<List<CathegoryModel>>() {
-            @Override
-            public void onResponse(Call<List<CathegoryModel>> call, Response<List<CathegoryModel>> response) {
-                if (!response.isSuccessful()){
-
-
-                    Log.d("not successfuly", ""+response.errorBody());
-
-                    return;
-
-                }
-
-                cathegoryMod = response.body();
-
-                cathegoryMod.get(0).getId();
-
-                recyclerView = findViewById(R.id.recycler1);
-
-                Log.d("view", ""+cathegoryMod.size());
-                flirtyAdapter = new FlirtyAdapter(FlirtyGroupPage.this, cathegoryMod);
-
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplication());
-                linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-//                recyclerView.setLayoutManager(linearLayoutManager);
-//                recyclerView.setAdapter(flirtyAdapter);
-
-
-//                LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getApplication());
-//                linearLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
-//                secondRecycler.setLayoutManager(linearLayoutManager1);
-//                secondRecycler.setAdapter(flirtyAdapter);
-//
-//
-//                LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getApplication());
-//                linearLayoutManager2.setOrientation(RecyclerView.HORIZONTAL);
-//                secondRecycler.setLayoutManager(linearLayoutManager2);
-//                secondRecycler.setAdapter(flirtyAdapter);
-
-
-
-            }
-
-            @Override
-            public void onFailure(Call<List<CathegoryModel>> call, Throwable t) {
-                Log.d("cathenotshown", ""+t.getMessage());
-            }
-        });
-    }
     public void bk(View view) {
         finish();
     }
@@ -174,5 +132,73 @@ public class FlirtyGroupPage extends AppCompatActivity {
         intent.putExtra("imagefour",image_four);
         intent.putExtra("folder",getIntent().getStringExtra("folderName"));
         startActivity(intent);
+    }
+
+
+
+    public void getInAppGroup(final Context context) {
+
+
+        Call<List<AllCategory>> call = RetrofitClientInstance.getRetrofitFlirtyInstance().create(GetForAllCategories.class).getInApp(ApiEndPoints.CategoryByGroupApp);
+
+        call.enqueue(new retrofit2.Callback<List<AllCategory>>() {
+
+            @Override
+            public void onResponse(Call<List<AllCategory>> call, Response<List<AllCategory>> response) {
+                if (response.isSuccessful()) {
+                    ArrayList<AllCategory> imageObjects = new ArrayList<>();
+
+                    for (AllCategory fetchd : response.body()) {
+
+                        if(!Objects.equals(fetchd.getName(), groupName)){
+                            AllCategory allCategory = new AllCategory();
+                            allCategory.setName(fetchd.getName());
+                            allCategory.setId(fetchd.getId());
+                            allCategory.setFile(fetchd.getFile());
+                            allCategory.setPrice(fetchd.getPrice() / 100);
+                            allCategory.setFolderName(fetchd.getFolderName());
+                            allCategory.setEmojiModel(fetchd.getEmojiModel());
+                            imageObjects.add(allCategory);
+                        }
+
+
+
+                    }
+
+
+                    progressBar.setVisibility(View.GONE);
+
+                    inAppActionAdapter = new InAppActionAdapter(imageObjects, FlirtyGroupPage.this);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplication());
+
+                    if( recyclerView != null){
+                        recyclerView.setLayoutManager(linearLayoutManager);
+                        recyclerView.setAdapter(inAppActionAdapter);
+                    }
+
+
+                    if (response.body().size() < 1) {
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(context, "No categories found.", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } else {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(context, "An error occurred while fetching categories." + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+//
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<AllCategory>> call, Throwable t) {
+                call.cancel();
+                progressBar.setVisibility(View.GONE);
+                Log.e("error", "onFailure: ", t);
+                Toast.makeText(context, "Connection Error.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }

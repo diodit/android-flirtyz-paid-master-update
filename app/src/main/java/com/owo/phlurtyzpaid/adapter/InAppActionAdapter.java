@@ -46,10 +46,14 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
         Glide.with(context)
                 .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(0).getFile())
                 .into(holder.imageone);
+        if(allCategory.getEmojiModel().size()>1){
 
-        Glide.with(context)
-                .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(1).getFile())
-                .into(holder.imagetwo);
+            Glide.with(context)
+                    .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(1).getFile())
+                    .into(holder.imagetwo);
+
+        }
+
 
         if(allCategory.getEmojiModel().size()>2){
             Glide.with(context)

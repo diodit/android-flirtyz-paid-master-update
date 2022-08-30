@@ -21,7 +21,7 @@ import java.net.URISyntaxException;
 
 public class CheckoutActivity extends AppCompatActivity {
 
-    private String folderName;
+    private String folderName, groupName;
 
 
     @Override
@@ -32,16 +32,21 @@ public class CheckoutActivity extends AppCompatActivity {
         Button checkout = findViewById(R.id.Button03);
         TextView totalFee = findViewById(R.id.totalfee);
         TextView textView3 = findViewById(R.id.textView3);
-
-        double price = getIntent().getDoubleExtra("price",0);
-        folderName = getIntent().getStringExtra("folder");
+        TextView textView4 = findViewById(R.id.groupidbyName);
 
         String image_one = getIntent().getStringExtra("imageone");
         String image_two = getIntent().getStringExtra("imagetwo");
         String image_three = getIntent().getStringExtra("imagethree");
         String image_four = getIntent().getStringExtra("imagefour");
+        double price = getIntent().getDoubleExtra("price",0);
 
 
+        folderName = getIntent().getStringExtra("folder");
+        groupName = getIntent().getStringExtra("group_name");
+        ImageView imageView1 = findViewById(R.id.imageone);
+        Glide.with(this).load(image_one).into(imageView1);
+        textView3.setText("$"+price);
+        textView4.setText(groupName);
 
 
         if(price != 0){
@@ -49,11 +54,10 @@ public class CheckoutActivity extends AppCompatActivity {
         }
 
         if(image_two != null){
-            ImageView imageView1 = findViewById(R.id.imageone);
-            Glide.with(this).load(image_one).into(imageView1);
+
             ImageView imageView2 = findViewById(R.id.imagetwo);
             Glide.with(this).load(image_two).into(imageView2);
-            textView3.setText("$"+price);
+
         }
 
 
@@ -71,25 +75,17 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CheckoutActivity.this, FlirtyGroupPage.class);
-                startActivity(intent);
-            }
+        cancel.setOnClickListener(view -> {
+            Intent intent = new Intent(CheckoutActivity.this, FlirtyGroupPage.class);
+            startActivity(intent);
         });
 
-        checkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String originalString = ApiEndPoints.paymentLink;
-                int real_price = (int) (price * 100);
-                String finalUrl =  appendUri(originalString, folderName,String.valueOf(real_price));
-                Log.d("finalUrl",finalUrl);
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(finalUrl)));
-
-                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ApiEndPoints.PaymentURL)));
-            }
+        checkout.setOnClickListener(view -> {
+            String originalString = ApiEndPoints.paymentLink;
+            int real_price = (int) (price * 100);
+            String finalUrl =  appendUri(originalString, folderName,String.valueOf(real_price));
+            Log.d("finalUrl",finalUrl);
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(finalUrl)));
         });
 
 
