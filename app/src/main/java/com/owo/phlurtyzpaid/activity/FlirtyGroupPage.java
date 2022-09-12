@@ -25,6 +25,7 @@ import com.owo.phlurtyzpaid.adapter.InAppActionAdapter;
 import com.owo.phlurtyzpaid.api.RetrofitClientInstance;
 import com.owo.phlurtyzpaid.api.interfaces.GetForAllCategories;
 import com.owo.phlurtyzpaid.api.models.AllCategory;
+import com.owo.phlurtyzpaid.api.models.CreatedBy;
 import com.owo.phlurtyzpaid.model.CathegoryModel;
 import com.owo.phlurtyzpaid.utils.ApiEndPoints;
 
@@ -46,6 +47,8 @@ public class FlirtyGroupPage extends AppCompatActivity {
     private InAppActionAdapter inAppActionAdapter;
     String image_two, image_one, groupName,image_three,image_four;
 
+    private CreatedBy createdBy;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +67,9 @@ public class FlirtyGroupPage extends AppCompatActivity {
         ImageView imageView3 = findViewById(R.id.imagethree);
         ImageView imageView4 = findViewById(R.id.imagefour);
         TextView textView3 = findViewById(R.id.textView3);
+        TextView groupMemberName = findViewById(R.id.groupMemberName);
 
+        TextView creatorsName = findViewById(R.id.creatorsname);
         TextView groupIdbyName = findViewById(R.id.groupidbyName);
 
         progressBar = findViewById(R.id.progress_bar);
@@ -75,6 +80,10 @@ public class FlirtyGroupPage extends AppCompatActivity {
         image_three = getIntent().getStringExtra("imagethree");
 
         image_four = getIntent().getStringExtra("imagefour");
+        createdBy = (CreatedBy) getIntent().getSerializableExtra("createdByInfo");
+
+
+
 
         price = getIntent().getDoubleExtra("price",0);
         groupName = getIntent().getStringExtra("group_name");
@@ -87,6 +96,10 @@ public class FlirtyGroupPage extends AppCompatActivity {
         Glide.with(this).load(image_one).into(imageView1);
         textView3.setText("$"+price);
 
+        if(createdBy != null){
+            creatorsName.setText(createdBy.getFirstName()+" "+createdBy.getLastName());
+            groupMemberName.setText(createdBy.getFirstName()+" "+createdBy.getLastName());
+        }
         if(image_one != null && image_two != null){
             Glide.with(this).load(image_two).into(imageView2);
         }

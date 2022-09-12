@@ -1,6 +1,8 @@
 package com.owo.phlurtyzpaid.api.models;
 
-public class CreatedBy {
+import java.io.Serializable;
+
+public class CreatedBy implements Serializable {
     private int id;
     private String email;
     private String firstName;

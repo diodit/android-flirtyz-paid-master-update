@@ -14,6 +14,10 @@ public class AllCategory {
     public CreatedAt createdAt;
     public UpdatedAt updatedAt;
     private String folderName;
+
+
+
+    private CreatedBy createdBy;
     @SerializedName("emojis")
     private List<EmojiModel> emojiModel;
     private double price;
@@ -97,5 +101,13 @@ public class AllCategory {
 
     public void setUpdatedAt(UpdatedAt updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public CreatedBy getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(CreatedBy createdBy) {
+        this.createdBy = createdBy;
     }
 }

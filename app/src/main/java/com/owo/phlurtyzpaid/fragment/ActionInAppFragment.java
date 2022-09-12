@@ -108,6 +108,7 @@ public class ActionInAppFragment extends Fragment {
                         allCategory.setPrice(fetchd.getPrice() / 100);
                         allCategory.setFolderName(fetchd.getFolderName());
                         allCategory.setEmojiModel(fetchd.getEmojiModel());
+                        allCategory.setCreatedBy(fetchd.getCreatedBy());
                         imageObjects.add(allCategory);
                     }
 
@@ -121,7 +122,10 @@ public class ActionInAppFragment extends Fragment {
                         intent.putExtra("price", category.getPrice());
                         intent.putExtra("folderName", category.getFolderName());
                         intent.putExtra("group_name", category.getName());
+
                         intent.putExtra("imageone", "http://34.213.79.205/" + category.getEmojiModel().get(0).getFile());
+                        intent.putExtra("createdByInfo",category.getCreatedBy());
+
                         if (category.getEmojiModel().size() > 1) {
                             intent.putExtra("imagetwo", "http://34.213.79.205/" + category.getEmojiModel().get(1).getFile());
                         }

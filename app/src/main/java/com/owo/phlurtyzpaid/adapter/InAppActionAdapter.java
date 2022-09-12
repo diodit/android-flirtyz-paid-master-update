@@ -43,6 +43,11 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
         AllCategory allCategory = allCategoryList.get(position);
         holder.price.setText("$"+(allCategory.getPrice()));
         holder.groupName.setText(allCategory.getName());
+
+        if( allCategory.getCreatedBy() != null){
+            holder.creator.setText(allCategory.getCreatedBy().getFirstName()+" "+allCategory.getCreatedBy().getLastName());
+        }
+
         Glide.with(context)
                 .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(0).getFile())
                 .into(holder.imageone);
@@ -79,7 +84,7 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
     public class InAppActionAdapterViewHolder extends RecyclerView.ViewHolder {
         LinearLayout linearLayout;
         ImageView imageone,imagetwo,imagethree,imagefour;
-        TextView price, groupName;
+        TextView price, groupName, creator;
         public InAppActionAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             linearLayout = itemView.findViewById(R.id.firstlayoutaction);
@@ -89,6 +94,7 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
             imagefour = itemView.findViewById(R.id.imagefour);
             price = itemView.findViewById(R.id.textView3);
             groupName = itemView.findViewById(R.id.groupid);
+            creator = itemView.findViewById(R.id.creator);
 
 
             linearLayout.setOnClickListener(view -> {
