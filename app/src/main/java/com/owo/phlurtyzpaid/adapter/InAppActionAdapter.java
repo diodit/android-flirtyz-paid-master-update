@@ -21,19 +21,21 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
     private final List<AllCategory> allCategoryList;
     private final Context context;
     private InAppActionAdapterListener listener;
-    public InAppActionAdapter( List<AllCategory> allCategoryList, Context context){
+
+    public InAppActionAdapter(List<AllCategory> allCategoryList, Context context) {
         this.allCategoryList = allCategoryList;
         this.context = context;
     }
+
     @NonNull
     @Override
     public InAppActionAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.inappactionsingle,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.inappactionsingle, parent, false);
         return new InAppActionAdapterViewHolder(view);
     }
 
 
-    public void setListenerForAdapter(InAppActionAdapterListener listener){
+    public void setListenerForAdapter(InAppActionAdapterListener listener) {
         this.listener = listener;
     }
 
@@ -41,37 +43,40 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
     public void onBindViewHolder(@NonNull InAppActionAdapterViewHolder holder, int position) {
 
         AllCategory allCategory = allCategoryList.get(position);
-        holder.price.setText("$"+(allCategory.getPrice()));
+        holder.price.setText("$" + (allCategory.getPrice()));
         holder.groupName.setText(allCategory.getName());
 
-        if( allCategory.getCreatedBy() != null){
-            holder.creator.setText(allCategory.getCreatedBy().getFirstName()+" "+allCategory.getCreatedBy().getLastName());
+        if (allCategory.getCreatedBy() != null) {
+            holder.creator.setText(allCategory.getCreatedBy().getFirstName() + " " + allCategory.getCreatedBy().getLastName());
         }
 
-        Glide.with(context)
-                .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(0).getFile())
-                .into(holder.imageone);
-        if(allCategory.getEmojiModel().size()>1){
+
+        if (allCategory.getEmojiModel().size() > 0) {
+            Glide.with(context)
+                    .load("http://34.213.79.205/" + allCategory.getEmojiModel().get(0).getFile())
+                    .into(holder.imageone);
+        }
+
+        if (allCategory.getEmojiModel().size() > 1) {
 
             Glide.with(context)
-                    .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(1).getFile())
+                    .load("http://34.213.79.205/" + allCategory.getEmojiModel().get(1).getFile())
                     .into(holder.imagetwo);
 
         }
 
 
-        if(allCategory.getEmojiModel().size()>2){
+        if (allCategory.getEmojiModel().size() > 2) {
             Glide.with(context)
-                    .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(2).getFile())
+                    .load("http://34.213.79.205/" + allCategory.getEmojiModel().get(2).getFile())
                     .into(holder.imagethree);
         }
 
-        if(allCategory.getEmojiModel().size()>3){
+        if (allCategory.getEmojiModel().size() > 3) {
             Glide.with(context)
-                    .load("http://34.213.79.205/"+allCategory.getEmojiModel().get(3).getFile())
+                    .load("http://34.213.79.205/" + allCategory.getEmojiModel().get(3).getFile())
                     .into(holder.imagefour);
         }
-
 
 
     }
@@ -83,8 +88,9 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
 
     public class InAppActionAdapterViewHolder extends RecyclerView.ViewHolder {
         LinearLayout linearLayout;
-        ImageView imageone,imagetwo,imagethree,imagefour;
+        ImageView imageone, imagetwo, imagethree, imagefour;
         TextView price, groupName, creator;
+
         public InAppActionAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             linearLayout = itemView.findViewById(R.id.firstlayoutaction);
@@ -98,9 +104,9 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
 
 
             linearLayout.setOnClickListener(view -> {
-                if(listener != null){
+                if (listener != null) {
                     int position = getAdapterPosition();
-                    if(position != RecyclerView.NO_POSITION){
+                    if (position != RecyclerView.NO_POSITION) {
                         listener.navigate(position);
                     }
                 }
@@ -110,8 +116,7 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
     }
 
 
-
-    public interface  InAppActionAdapterListener{
+    public interface InAppActionAdapterListener {
         void navigate(int position);
     }
 

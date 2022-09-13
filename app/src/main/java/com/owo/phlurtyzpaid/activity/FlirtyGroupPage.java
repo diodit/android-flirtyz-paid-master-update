@@ -1,5 +1,6 @@
 package com.owo.phlurtyzpaid.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -36,6 +38,11 @@ import java.util.Objects;
 import retrofit2.Call;
 import retrofit2.Response;
 
+// Java program for the above approach
+import java.util.Date;
+import java.time.Month;
+import java.time.LocalDate;
+
 public class FlirtyGroupPage extends AppCompatActivity {
     List<CathegoryModel> cathegoryMod;
     private RecyclerView recyclerView;
@@ -43,10 +50,8 @@ public class FlirtyGroupPage extends AppCompatActivity {
     private double price;
     private ProgressBar progressBar;
     //private String folderName;
-
     private InAppActionAdapter inAppActionAdapter;
-    String image_two, image_one, groupName,image_three,image_four;
-
+    String image_two, image_one, groupName,image_three,image_four,fullName;
     private CreatedBy createdBy;
 
 
@@ -67,6 +72,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
         ImageView imageView3 = findViewById(R.id.imagethree);
         ImageView imageView4 = findViewById(R.id.imagefour);
         TextView textView3 = findViewById(R.id.textView3);
+        ImageView displaypic = findViewById(R.id.displaypic);
         TextView groupMemberName = findViewById(R.id.groupMemberName);
 
         TextView creatorsName = findViewById(R.id.creatorsname);
@@ -82,9 +88,6 @@ public class FlirtyGroupPage extends AppCompatActivity {
         image_four = getIntent().getStringExtra("imagefour");
         createdBy = (CreatedBy) getIntent().getSerializableExtra("createdByInfo");
 
-
-
-
         price = getIntent().getDoubleExtra("price",0);
         groupName = getIntent().getStringExtra("group_name");
         groupIdbyName.setText(groupName);
@@ -99,6 +102,13 @@ public class FlirtyGroupPage extends AppCompatActivity {
         if(createdBy != null){
             creatorsName.setText(createdBy.getFirstName()+" "+createdBy.getLastName());
             groupMemberName.setText(createdBy.getFirstName()+" "+createdBy.getLastName());
+            fullName = createdBy.getFirstName()+" "+createdBy.getLastName();
+        }
+
+        if( createdBy != null  ){
+            if( createdBy.getFile() != null){
+                Glide.with(this).load("http://34.213.79.205/"+createdBy.getFile()).into(displaypic);
+            }
         }
         if(image_one != null && image_two != null){
             Glide.with(this).load(image_two).into(imageView2);
@@ -143,11 +153,39 @@ public class FlirtyGroupPage extends AppCompatActivity {
         intent.putExtra("imagetwo", image_two);
         intent.putExtra("imagethree",image_three);
         intent.putExtra("imagefour",image_four);
+        intent.putExtra("full_name",fullName);
+
         intent.putExtra("folder",getIntent().getStringExtra("folderName"));
         startActivity(intent);
     }
 
 
+
+
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    public static void
+//    getDayMonthYear(String date)
+//    {
+//
+//        // Get an instance of LocalTime
+//        // from date
+//        LocalDate currentDate
+//                = LocalDate.parse(date);
+//
+//        // Get day from date
+//        int day = currentDate.getDayOfMonth();
+//
+//        // Get month from date
+//        Month month = currentDate.getMonth();
+//
+//        // Get year from date
+//        int year = currentDate.getYear();
+//
+//        // Print the day, month, and year
+//        Log.d("Day: ", String.valueOf(day));
+//        Log.d("Month: " ,month.toString());
+//        Log.d("Year:", String.valueOf(year));
+//    }
 
     public void getInAppGroup(final Context context) {
 
@@ -156,6 +194,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
 
         call.enqueue(new retrofit2.Callback<List<AllCategory>>() {
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<List<AllCategory>> call, Response<List<AllCategory>> response) {
                 if (response.isSuccessful()) {
@@ -170,6 +209,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
                             allCategory.setFile(fetchd.getFile());
                             allCategory.setPrice(fetchd.getPrice() / 100);
                             allCategory.setFolderName(fetchd.getFolderName());
+                            allCategory.setCreatedBy(fetchd.getCreatedBy());
                             allCategory.setEmojiModel(fetchd.getEmojiModel());
                             imageObjects.add(allCategory);
                         }
@@ -180,7 +220,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
 
 
                     progressBar.setVisibility(View.GONE);
-
+//                    getDayMonthYear(createdBy.getCreatedAt());
                     inAppActionAdapter = new InAppActionAdapter(imageObjects, FlirtyGroupPage.this);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplication());
 

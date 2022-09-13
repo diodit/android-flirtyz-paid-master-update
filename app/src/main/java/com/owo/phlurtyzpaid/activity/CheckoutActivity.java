@@ -21,7 +21,7 @@ import java.net.URISyntaxException;
 
 public class CheckoutActivity extends AppCompatActivity {
 
-    private String folderName, groupName;
+    private String folderName;
 
 
     @Override
@@ -33,6 +33,7 @@ public class CheckoutActivity extends AppCompatActivity {
         TextView totalFee = findViewById(R.id.totalfee);
         TextView textView3 = findViewById(R.id.textView3);
         TextView textView4 = findViewById(R.id.groupidbyName);
+        TextView creator = findViewById(R.id.creator);
 
         String image_one = getIntent().getStringExtra("imageone");
         String image_two = getIntent().getStringExtra("imagetwo");
@@ -42,7 +43,9 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
         folderName = getIntent().getStringExtra("folder");
-        groupName = getIntent().getStringExtra("group_name");
+
+        String groupName = getIntent().getStringExtra("group_name");
+        creator.setText(getIntent().getStringExtra("full_name"));
         ImageView imageView1 = findViewById(R.id.imageone);
         Glide.with(this).load(image_one).into(imageView1);
         textView3.setText("$"+price);
