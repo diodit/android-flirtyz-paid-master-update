@@ -46,18 +46,37 @@
                 android:orientation="horizontal"
                 android:paddingHorizontal="10dp">
 
-                <ImageView
+<!--                <de.hdodenhof.circleimageview.CircleImageView-->
+
+<!--                    android:id="@+id/profile_image"-->
+<!--                    android:layout_width="96dp"-->
+<!--                    android:layout_height="96dp"-->
+<!--                    android:src="@drawable/profile"-->
+<!--                    app:civ_border_width="2dp"-->
+<!--                    app:civ_border_color="#FF000000"/>-->
+
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/displaypic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="130dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/avataprofilee"/>
+                    android:padding="10dp"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:src="@drawable/profile"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#FF000000"/>
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/profile_image"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="130dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/list"-->
+<!--                    android:src="@drawable/avataprofilee"/>-->
 
                 <LinearLayout
                     android:id="@+id/groupName"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
@@ -73,6 +92,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/dateJoined"
                         android:text="Date Joined: Sep 11, 2021"/>
 
 

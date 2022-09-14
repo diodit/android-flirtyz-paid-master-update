@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.owo.phlurtyzpaid.R;
+import android.text.format.DateFormat;
 
 import com.owo.phlurtyzpaid.adapter.FlirtyAdapter;
 import com.owo.phlurtyzpaid.adapter.InAppActionAdapter;
@@ -31,10 +32,14 @@ import com.owo.phlurtyzpaid.api.models.CreatedBy;
 import com.owo.phlurtyzpaid.model.CathegoryModel;
 import com.owo.phlurtyzpaid.utils.ApiEndPoints;
 
+import java.text.MessageFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -67,13 +72,17 @@ public class FlirtyGroupPage extends AppCompatActivity {
         Button btn_purchase = findViewById(R.id.btn_purchase);
 
 
+
+
+
         ImageView imageView1 = findViewById(R.id.imageone);
         ImageView imageView2 = findViewById(R.id.imagetwo);
         ImageView imageView3 = findViewById(R.id.imagethree);
         ImageView imageView4 = findViewById(R.id.imagefour);
         TextView textView3 = findViewById(R.id.textView3);
-        ImageView displaypic = findViewById(R.id.displaypic);
+        CircleImageView displaypic = findViewById(R.id.displaypic);
         TextView groupMemberName = findViewById(R.id.groupMemberName);
+        TextView dateJoined = findViewById(R.id.dateJoined);
 
         TextView creatorsName = findViewById(R.id.creatorsname);
         TextView groupIdbyName = findViewById(R.id.groupidbyName);
@@ -97,12 +106,29 @@ public class FlirtyGroupPage extends AppCompatActivity {
         Log.d("Price",""+price);
 
         Glide.with(this).load(image_one).into(imageView1);
-        textView3.setText("$"+price);
+        textView3.setText(MessageFormat.format("${0}", price));
 
         if(createdBy != null){
-            creatorsName.setText(createdBy.getFirstName()+" "+createdBy.getLastName());
-            groupMemberName.setText(createdBy.getFirstName()+" "+createdBy.getLastName());
-            fullName = createdBy.getFirstName()+" "+createdBy.getLastName();
+            String firstName =createdBy.getFirstName().substring(0, 1).toUpperCase() + createdBy.getFirstName().substring(1).toLowerCase();
+            String secondName = createdBy.getLastName().substring(0, 1).toUpperCase() + createdBy.getLastName().substring(1).toLowerCase();
+            creatorsName.setText(MessageFormat.format("{0} {1}", firstName, secondName));
+            groupMemberName.setText(MessageFormat.format("{0} {1}", firstName, secondName));
+
+            fullName = firstName+" "+secondName;
+            //fullName = createdBy.getFirstName().substring(0, 1).toUpperCase().substring(1)+" "+createdBy.getLastName().substring(0, 1).toUpperCase().substring(1);
+            try {
+                Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(createdBy.getCreatedAt());
+//              String dayOfTheWeek = (String) DateFormat.format("EEEE", date); // Thursday
+                String day          = (String) DateFormat.format("dd",  date); // 20
+                String monthString  = (String) DateFormat.format("MMM", date); // Jun
+//              String monthNumber  = (String) DateFormat.format("MM",  date); // 06
+                String year         = (String) DateFormat.format("yyyy", date); // 2013
+                dateJoined.setText(MessageFormat.format("Date Joined {0} {1},{2}", monthString, day, year));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+//            dayOfTheWeek = (String) DateFormat.format("EEEE",Long.valueOf(createdBy.getCreatedAt()));
+
         }
 
         if( createdBy != null  ){
@@ -126,7 +152,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
 
         cathegoryMod = new ArrayList<>();
 
-        btn_purchase.setText("Purchase for $"+price);
+        btn_purchase.setText(MessageFormat.format("Purchase for ${0}", price));
 
     }
 

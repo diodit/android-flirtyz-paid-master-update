@@ -79,8 +79,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
         cancel.setOnClickListener(view -> {
-            Intent intent = new Intent(CheckoutActivity.this, FlirtyGroupPage.class);
-            startActivity(intent);
+            super.onBackPressed();
         });
 
         checkout.setOnClickListener(view -> {

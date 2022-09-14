@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.api.models.AllCategory;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.InAppActionAdapterViewHolder> {
@@ -43,13 +44,17 @@ public class InAppActionAdapter extends RecyclerView.Adapter<InAppActionAdapter.
     public void onBindViewHolder(@NonNull InAppActionAdapterViewHolder holder, int position) {
 
         AllCategory allCategory = allCategoryList.get(position);
-        holder.price.setText("$" + (allCategory.getPrice()));
+
+        holder.price.setText(MessageFormat.format("${0}", allCategory.getPrice()));
         holder.groupName.setText(allCategory.getName());
 
         if (allCategory.getCreatedBy() != null) {
-            holder.creator.setText(allCategory.getCreatedBy().getFirstName() + " " + allCategory.getCreatedBy().getLastName());
+            String firstName =allCategory.getCreatedBy().getFirstName().substring(0, 1).toUpperCase() + allCategory.getCreatedBy().getFirstName().substring(1).toLowerCase();
+            String secondName = allCategory.getCreatedBy().getLastName().substring(0, 1).toUpperCase() + allCategory.getCreatedBy().getLastName().substring(1).toLowerCase();
+            holder.creator.setText(MessageFormat.format("{0} {1}", firstName, secondName));
         }
 
+//        .substring(0, 1).toUpperCase().substring(1)
 
         if (allCategory.getEmojiModel().size() > 0) {
             Glide.with(context)
