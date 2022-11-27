@@ -56,8 +56,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
     private ProgressBar progressBar;
     //private String folderName;
     private InAppActionAdapter inAppActionAdapter;
-    String image_two, image_one, groupName,image_three,image_four,fullName;
-    private CreatedBy createdBy;
+    String image_two, image_one, groupName,image_three,image_four,fullName,categoryId;
 
 
     @Override
@@ -70,10 +69,6 @@ public class FlirtyGroupPage extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Flirty Group");
         Button btn_purchase = findViewById(R.id.btn_purchase);
-
-
-
-
 
         ImageView imageView1 = findViewById(R.id.imageone);
         ImageView imageView2 = findViewById(R.id.imagetwo);
@@ -95,21 +90,26 @@ public class FlirtyGroupPage extends AppCompatActivity {
         image_three = getIntent().getStringExtra("imagethree");
 
         image_four = getIntent().getStringExtra("imagefour");
-        createdBy = (CreatedBy) getIntent().getSerializableExtra("createdByInfo");
+        categoryId = getIntent().getStringExtra("categoryId");
+
+//
+
+        CreatedBy createdBy = (CreatedBy) getIntent().getSerializableExtra("createdByInfo");
 
         price = getIntent().getDoubleExtra("price",0);
         groupName = getIntent().getStringExtra("group_name");
         groupIdbyName.setText(groupName);
         recyclerView = findViewById(R.id.recyclerview);
-
+//        Log.d("image_three",image_three);
         Log.d("ImageOe",image_one);
         Log.d("Price",""+price);
+//        Log.d("CategoryId",categoryId);
 
         Glide.with(this).load(image_one).into(imageView1);
         textView3.setText(MessageFormat.format("${0}", price));
 
         if(createdBy != null){
-            String firstName =createdBy.getFirstName().substring(0, 1).toUpperCase() + createdBy.getFirstName().substring(1).toLowerCase();
+            String firstName = createdBy.getFirstName().substring(0, 1).toUpperCase() + createdBy.getFirstName().substring(1).toLowerCase();
             String secondName = createdBy.getLastName().substring(0, 1).toUpperCase() + createdBy.getLastName().substring(1).toLowerCase();
             creatorsName.setText(MessageFormat.format("{0} {1}", firstName, secondName));
             groupMemberName.setText(MessageFormat.format("{0} {1}", firstName, secondName));
@@ -133,7 +133,7 @@ public class FlirtyGroupPage extends AppCompatActivity {
 
         if( createdBy != null  ){
             if( createdBy.getFile() != null){
-                Glide.with(this).load("http://34.213.79.205/"+createdBy.getFile()).into(displaypic);
+                Glide.with(this).load("http://34.213.79.205/"+ createdBy.getFile()).into(displaypic);
             }
         }
         if(image_one != null && image_two != null){
@@ -187,37 +187,12 @@ public class FlirtyGroupPage extends AppCompatActivity {
 
 
 
-
-//    @RequiresApi(api = Build.VERSION_CODES.O)
-//    public static void
-//    getDayMonthYear(String date)
-//    {
-//
-//        // Get an instance of LocalTime
-//        // from date
-//        LocalDate currentDate
-//                = LocalDate.parse(date);
-//
-//        // Get day from date
-//        int day = currentDate.getDayOfMonth();
-//
-//        // Get month from date
-//        Month month = currentDate.getMonth();
-//
-//        // Get year from date
-//        int year = currentDate.getYear();
-//
-//        // Print the day, month, and year
-//        Log.d("Day: ", String.valueOf(day));
-//        Log.d("Month: " ,month.toString());
-//        Log.d("Year:", String.valueOf(year));
-//    }
-
     public void getInAppGroup(final Context context) {
 
 
-        Call<List<AllCategory>> call = RetrofitClientInstance.getRetrofitFlirtyInstance().create(GetForAllCategories.class).getInApp(ApiEndPoints.CategoryByGroupApp);
+        Call<List<AllCategory>> call = RetrofitClientInstance.getRetrofitFlirtyInstance().create(GetForAllCategories.class).getInApp(ApiEndPoints.CategoryByGroupApp+categoryId);
 
+        Log.d("URL",ApiEndPoints.CategoryByGroupApp+categoryId);
         call.enqueue(new retrofit2.Callback<List<AllCategory>>() {
 
             @RequiresApi(api = Build.VERSION_CODES.O)

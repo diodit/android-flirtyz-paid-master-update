@@ -22,11 +22,13 @@ public class ApiEndPoints {
 
     public static final String CategoryAll = SPECIALS_BASE_URL + "api/category/getAll";
 
+    public static final String CategoryAllInApp = SPECIALS_BASE_URL + "api/public/api/category/getInAppCategories";
+
     public static final String CategoryById = SPECIALS_BASE_URL + "api/emoji/getByCatId/";
 
-    public static final String CategoryByGroupApp = SPECIALS_BASE_URL + "api/public/api/emojiGroup/getCategoryGroupEmoji/37";
+    public static final String CategoryByGroupApp = SPECIALS_BASE_URL + "api/public/api/emojiGroup/getCategoryGroupEmoji/";
 
     public static final String PaymentURL = "https://www.diodot.com/phlurtyzgatewayFreeApp/payinapp.php";
 
-    public static final String paymentLink = "http://34.213.79.205/payment/phlurtyzgateway/payinapp.php?folderName=";
+    public static final String paymentLink = "https://www.flirtyzapp.com/payment/phlurtyzgateway/payinapp.php?folderName=";
 }

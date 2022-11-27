@@ -23,17 +23,17 @@
             android:layout_centerVertical="true"/>
 
 
-            <GridView
-                android:id="@+id/special_gridview"
-                android:numColumns="auto_fit"
-                android:gravity="center"
-                android:columnWidth="100dp"
-                android:stretchMode="columnWidth"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@android:color/white">
+        <GridView
+            android:id="@+id/special_gridview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:color/white"
+            android:columnWidth="100dp"
+            android:gravity="center"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth">
 
-            </GridView>
+        </GridView>
 
 
     </RelativeLayout>

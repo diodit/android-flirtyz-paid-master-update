@@ -1,8 +1,7 @@
 package com.owo.phlurtyzpaid.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -11,40 +10,46 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.adapter.ViewPagerAdapter;
+import com.owo.phlurtyzpaid.api.RetrofitClientInstance;
+import com.owo.phlurtyzpaid.api.interfaces.ApiCallback;
+import com.owo.phlurtyzpaid.api.interfaces.GetForAllCategories;
 import com.owo.phlurtyzpaid.api.models.AllCategory;
 import com.owo.phlurtyzpaid.core.BaseActivity;
-import com.owo.phlurtyzpaid.fragment.ActionInAppFragment;
-import com.owo.phlurtyzpaid.fragment.CharacterInAppFragment;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment10;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment11;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment12;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment13;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment14;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment15;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment2;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment3;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment4;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment5;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment6;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment7;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment8;
-import com.owo.phlurtyzpaid.fragment.MainModCategoryFragment9;
-import com.owo.phlurtyzpaid.fragment.StandardInAppFragment;
+import com.owo.phlurtyzpaid.fragment.InAppCategoryFragment1;
+import com.owo.phlurtyzpaid.fragment.InAppCategoryFragment2;
+import com.owo.phlurtyzpaid.fragment.InAppCategoryFragment10;
+import com.owo.phlurtyzpaid.fragment.InAppCategoryFragment4;
+import com.owo.phlurtyzpaid.fragment.InAppCategoryFragment5;
+import com.owo.phlurtyzpaid.fragment.InAppCategoryFragment6;
+import com.owo.phlurtyzpaid.fragment.InAppCategoryFragment7;
+import com.owo.phlurtyzpaid.fragment.InAppCategoryFragment8;
+import com.owo.phlurtyzpaid.fragment.InAppCategoryFragment9;
+import com.owo.phlurtyzpaid.fragment.InAppCategoryFragment3;
+import com.owo.phlurtyzpaid.utils.ApiEndPoints;
 import com.owo.phlurtyzpaid.utils.Prefs;
 import com.owo.phlurtyzpaid.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ListIterator;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class FlirtyappInApp extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -60,6 +65,8 @@ public class FlirtyappInApp extends BaseActivity implements NavigationView.OnNav
     private static final String IMAGE_PATH_KEY="imagePaths";
 
     private Context context;
+
+    private static ArrayList<AllCategory> fetchedData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,12 +104,12 @@ public class FlirtyappInApp extends BaseActivity implements NavigationView.OnNav
         navigationView.setNavigationItemSelectedListener(this);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-//        getCategories();
+        getCategories();
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        setupViewPager(viewPager,"");
+       // setupViewPager(viewPager,"");
     }
 
 
@@ -111,21 +118,124 @@ public class FlirtyappInApp extends BaseActivity implements NavigationView.OnNav
     private void setupViewPager(ViewPager viewPager, final String filterText) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        StandardInAppFragment standardFragment = new StandardInAppFragment();
 
-        ActionInAppFragment actionFragment = new ActionInAppFragment();
+        InAppCategoryFragment4 inAppCategoryFragment4 = new InAppCategoryFragment4();
+        InAppCategoryFragment5 inAppCategoryFragment5 = new InAppCategoryFragment5();
 
-        CharacterInAppFragment characterFragment = new CharacterInAppFragment();
+        InAppCategoryFragment6 inAppCategoryFragment6 = new InAppCategoryFragment6();
 
-        adapter.addFragment(standardFragment, "STANDARD");
+        InAppCategoryFragment7 inAppCategoryFragment7 = new InAppCategoryFragment7();
 
-        adapter.addFragment(actionFragment, "ACTION");
+        InAppCategoryFragment8 inAppCategoryFragment8 = new InAppCategoryFragment8();
 
-        adapter.addFragment(characterFragment, "CHARACTER");
 
-//        for (ListIterator<AllCategory> fetched = fetchedData.listIterator(); fetched.hasNext(); i++) {
-//            AllCategory allCategory = fetched.next();
-//            Bundle bundle = new Bundle();
+        InAppCategoryFragment9 inAppCategoryFragment9 = new InAppCategoryFragment9();
+
+        InAppCategoryFragment10 inAppCategoryFragment10 = new InAppCategoryFragment10();
+
+//        adapter.addFragment(standardFragment, "STANDARD");
+
+//        adapter.addFragment(actionFragment, "ACTION");
+//
+//        adapter.addFragment(characterFragment, "CHARACTER");
+
+        int i = 0;
+        for (ListIterator<AllCategory> fetched = fetchedData.listIterator(); fetched.hasNext(); i++) {
+            AllCategory allCategory = fetched.next();
+            Bundle bundle = new Bundle();
+
+            if(i == 0){
+                InAppCategoryFragment3 standardFragment = new InAppCategoryFragment3();
+                bundle.putString("filterText", filterText);
+                bundle.putString("categoryId", String.valueOf(allCategory.getId()));
+                standardFragment.setArguments(bundle);
+                adapter.addFragment(standardFragment,allCategory.getName());
+            }
+
+            if(i == 1){
+                InAppCategoryFragment1 actionFragment = new InAppCategoryFragment1();
+                bundle.putString("filterText", filterText);
+                bundle.putString("categoryId", String.valueOf(allCategory.getId()));
+
+                actionFragment.setArguments(bundle);
+                adapter.addFragment(actionFragment, allCategory.getName());
+            }
+
+            if(i == 2){
+                InAppCategoryFragment2 characterFragment = new InAppCategoryFragment2();
+                bundle.putString("filterText", filterText);
+                bundle.putString("categoryId", String.valueOf(allCategory.getId()));
+
+                characterFragment.setArguments(bundle);
+                adapter.addFragment(characterFragment, allCategory.getName());
+            }
+
+            if(i == 3){
+
+                bundle.putString("filterText", filterText);
+                bundle.putString("categoryId", String.valueOf(allCategory.getId()));
+
+                inAppCategoryFragment4.setArguments(bundle);
+                adapter.addFragment(inAppCategoryFragment4, allCategory.getName());
+            }
+
+            if(i == 4){
+
+                bundle.putString("filterText", filterText);
+                bundle.putString("categoryId", String.valueOf(allCategory.getId()));
+
+                inAppCategoryFragment5.setArguments(bundle);
+                adapter.addFragment(inAppCategoryFragment5, allCategory.getName());
+            }
+
+            if(i == 5){
+
+                bundle.putString("filterText", filterText);
+                bundle.putString("categoryId", String.valueOf(allCategory.getId()));
+
+                inAppCategoryFragment6.setArguments(bundle);
+                adapter.addFragment(inAppCategoryFragment6, allCategory.getName());
+            }
+
+            if(i == 6){
+
+                bundle.putString("filterText", filterText);
+                bundle.putString("categoryId", String.valueOf(allCategory.getId()));
+
+                inAppCategoryFragment7.setArguments(bundle);
+                adapter.addFragment(inAppCategoryFragment7, allCategory.getName());
+            }
+
+            if(i == 7){
+
+                bundle.putString("filterText", filterText);
+                bundle.putString("categoryId", String.valueOf(allCategory.getId()));
+
+                inAppCategoryFragment8.setArguments(bundle);
+                adapter.addFragment(inAppCategoryFragment8, allCategory.getName());
+            }
+
+            if(i == 8){
+
+                bundle.putString("filterText", filterText);
+                bundle.putString("categoryId", String.valueOf(allCategory.getId()));
+
+                inAppCategoryFragment9.setArguments(bundle);
+                adapter.addFragment(inAppCategoryFragment9, allCategory.getName());
+            }
+
+            if(i == 9){
+
+                bundle.putString("filterText", filterText);
+                bundle.putString("categoryId", String.valueOf(allCategory.getId()));
+
+                inAppCategoryFragment10.setArguments(bundle);
+                adapter.addFragment(inAppCategoryFragment10, allCategory.getName());
+            }
+
+
+
+
 //            if(i == 0){
 //                MainModCategoryFragment mainModCategoryFragment = new MainModCategoryFragment();
 //                bundle.putString("filterText", filterText);
@@ -260,8 +370,8 @@ public class FlirtyappInApp extends BaseActivity implements NavigationView.OnNav
 //                mainModCategoryFragment15.setArguments(bundle);
 //                adapter.addFragment(mainModCategoryFragment15, allCategory.getName());
 //            }
-//
-//        }
+
+        }
 
         if(!filterText.isEmpty()){
             adapter.notifyDataSetChanged();
@@ -372,5 +482,102 @@ public class FlirtyappInApp extends BaseActivity implements NavigationView.OnNav
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+
+
+
+    public boolean isOnline(Context context){
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+
+        //should check null because in airplane mode it will be null
+        return (netInfo != null && netInfo.isConnected());
+
+    }
+
+
+    public void getCategories(){
+        getCategoriesFromApi(FlirtyappInApp.this, new ApiCallback() {
+            @Override
+            public void onResponse(boolean success) {
+                if(success){
+                    setupViewPager(viewPager, "");
+                }else {
+
+                    AlertDialog alertDialog = new AlertDialog.Builder(FlirtyappInApp.this).create();
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Retry",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    getCategories();
+                                }
+                            });
+
+                    if(isOnline(FlirtyappInApp.this)){
+                        alertDialog.setTitle("Oops!");
+                        alertDialog.setMessage("Please check your internet connectivity and try again.");
+                        alertDialog.show();
+                    }else{
+                        alertDialog.setTitle("Oops!");
+                        alertDialog.setMessage("We could not get any emogi at this time.");
+                        alertDialog.show();
+                    }
+
+
+                }
+            }
+        });
+    }
+
+
+
+
+//    Get categories to be displayed in the tab from the api below
+
+    public static void getCategoriesFromApi(final Context context, final ApiCallback callback){
+        Call<List<AllCategory>> call = RetrofitClientInstance.getRetrofitFlirtyInstance().create(GetForAllCategories.class).getAllData(ApiEndPoints.CategoryAllInApp);
+
+        call.enqueue(new retrofit2.Callback<List<AllCategory>>() {
+            @Override
+            public void onResponse(Call<List<AllCategory>> call, Response<List<AllCategory>> response) {
+
+                if (response.isSuccessful()) {
+
+                    ArrayList<AllCategory> imageObjects = new ArrayList<>();
+
+                    for(AllCategory fetchd : response.body()) {
+                        AllCategory allCategory = new AllCategory();
+                        allCategory.setName(fetchd.getName());
+                        allCategory.setId(fetchd.getId());
+
+                        imageObjects.add(allCategory);
+                    }
+                    fetchedData = imageObjects;
+
+
+                    if(response.body().size() < 1){
+                        Toast.makeText(context, "No categories found.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    callback.onResponse(response.body() != null);
+                }else{
+                    Toast.makeText(context, "An error occurred while fetching categories." + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+                    callback.onResponse(false);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<AllCategory>> call, Throwable t) {
+                call.cancel();
+                Log.e("error", "onFailure: ",t );
+                Toast.makeText(context, "Connection Error.", Toast.LENGTH_SHORT).show();
+                callback.onResponse(false);
+            }
+        });
+
     }
 }

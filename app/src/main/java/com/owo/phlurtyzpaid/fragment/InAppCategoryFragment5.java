@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,18 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.owo.phlurtyzpaid.R;
 import com.owo.phlurtyzpaid.activity.FlirtyGroupPage;
 import com.owo.phlurtyzpaid.adapter.InAppActionAdapter;
-import com.owo.phlurtyzpaid.adapter.PurchaseAdapter;
 import com.owo.phlurtyzpaid.api.RetrofitClientInstance;
-import com.owo.phlurtyzpaid.api.interfaces.ApiCallback;
 import com.owo.phlurtyzpaid.api.interfaces.GetForAllCategories;
 import com.owo.phlurtyzpaid.api.models.AllCategory;
 import com.owo.phlurtyzpaid.utils.ApiEndPoints;
@@ -37,29 +31,43 @@ import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ActionInAppFragment#newInstance} factory method to
+ * Use the {@link InAppCategoryFragment5#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ActionInAppFragment extends Fragment {
+public class InAppCategoryFragment5 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static ArrayList<AllCategory> fetchedData;
+
+
+
+    private ProgressBar progressBar;
+    private String categoryId;
+
     private RecyclerView recyclerView;
     private InAppActionAdapter inAppActionAdapter;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public ActionInAppFragment() {
+    public InAppCategoryFragment5() {
         // Required empty public constructor
     }
 
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment InAppCategoryFragment5.
+     */
     // TODO: Rename and change types and number of parameters
-    public static ActionInAppFragment newInstance(String param1, String param2) {
-        ActionInAppFragment fragment = new ActionInAppFragment();
+    public static InAppCategoryFragment5 newInstance(String param1, String param2) {
+        InAppCategoryFragment5 fragment = new InAppCategoryFragment5();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -74,24 +82,25 @@ public class ActionInAppFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        fetchedData = new ArrayList<>();
+        categoryId = this.getArguments().getString("categoryId");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_action_in_app, container, false);
+        View view = inflater.inflate(R.layout.fragment_in_app, container, false);
+        progressBar = view.findViewById(R.id.progressBar);
         recyclerView = view.findViewById(R.id.recyclerview);
         getInAppGroup(getContext());
         return view;
+        // Inflate the layout for this fragment
+        //return inflater.inflate(R.layout.fragment_in_app_category5, container, false);
     }
 
     public void getInAppGroup(final Context context) {
 
 
-        Call<List<AllCategory>> call = RetrofitClientInstance.getRetrofitFlirtyInstance().create(GetForAllCategories.class).getInApp(ApiEndPoints.CategoryByGroupApp);
+        Call<List<AllCategory>> call = RetrofitClientInstance.getRetrofitFlirtyInstance().create(GetForAllCategories.class).getInApp(ApiEndPoints.CategoryByGroupApp+categoryId);
 
         call.enqueue(new retrofit2.Callback<List<AllCategory>>() {
 
@@ -111,7 +120,7 @@ public class ActionInAppFragment extends Fragment {
                         allCategory.setCreatedBy(fetchd.getCreatedBy());
                         imageObjects.add(allCategory);
                     }
-
+                    progressBar.setVisibility(View.GONE);
                     inAppActionAdapter = new InAppActionAdapter(imageObjects, getContext());
                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                     recyclerView.setAdapter(inAppActionAdapter);
@@ -123,7 +132,7 @@ public class ActionInAppFragment extends Fragment {
                         intent.putExtra("folderName", category.getFolderName());
                         intent.putExtra("group_name", category.getName());
                         intent.putExtra("createdByInfo",category.getCreatedBy());
-
+                        intent.putExtra("categoryId",categoryId);
                         if (category.getEmojiModel().size() > 0) {
                             intent.putExtra("imageone", "http://34.213.79.205/" + category.getEmojiModel().get(0).getFile());
                         }
@@ -146,6 +155,7 @@ public class ActionInAppFragment extends Fragment {
 
 
                     if (response.body().size() < 1) {
+                        progressBar.setVisibility(View.GONE);
                         Toast.makeText(context, "No categories found.", Toast.LENGTH_SHORT).show();
                     }
 
@@ -153,6 +163,7 @@ public class ActionInAppFragment extends Fragment {
 
 
                 } else {
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(context, "An error occurred while fetching categories." + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
 //                    callback.onResponse(false);
                 }
@@ -161,6 +172,7 @@ public class ActionInAppFragment extends Fragment {
             @Override
             public void onFailure(Call<List<AllCategory>> call, Throwable t) {
                 call.cancel();
+                progressBar.setVisibility(View.GONE);
                 Log.e("error", "onFailure: ", t);
                 Toast.makeText(context, "Connection Error.", Toast.LENGTH_SHORT).show();
 //                callback.onResponse(false);

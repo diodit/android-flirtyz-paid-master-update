@@ -270,6 +270,8 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
         if(!filterText.isEmpty()){
             adapter.notifyDataSetChanged();
         }
+
+
         viewPager.setAdapter(adapter);
     }
 
