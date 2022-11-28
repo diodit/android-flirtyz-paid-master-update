@@ -8,6 +8,7 @@ public class EmojiModel {
     private String updatedAt;
     private String createdAt;
 
+
     public int getId() {
         return id;
     }

@@ -16,6 +16,7 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:id="@+id/back"
             app:menu="@menu/makepayment"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_ios"
             app:title="Flirtyz Group Name"
@@ -45,15 +46,35 @@
                 android:orientation="horizontal"
                 android:paddingHorizontal="10dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="130dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/avataprofilee"/>
+<!--                <de.hdodenhof.circleimageview.CircleImageView-->
+
+<!--                    android:id="@+id/profile_image"-->
+<!--                    android:layout_width="96dp"-->
+<!--                    android:layout_height="96dp"-->
+<!--                    android:src="@drawable/profile"-->
+<!--                    app:civ_border_width="2dp"-->
+<!--                    app:civ_border_color="#FF000000"/>-->
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/displaypic"
+                    android:padding="10dp"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:src="@drawable/profile"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#FF000000"/>
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/profile_image"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="130dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/list"-->
+<!--                    android:src="@drawable/avataprofilee"/>-->
 
                 <LinearLayout
                     android:id="@+id/groupName"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
@@ -62,6 +83,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
+                        android:id="@+id/groupMemberName"
                         android:layout_height="wrap_content"
                         android:text="Group Members Name"
                         android:textColor="@color/black"
@@ -70,6 +92,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/dateJoined"
                         android:text="Date Joined: Sep 11, 2021"/>
 
 
@@ -78,29 +101,194 @@
 
             </LinearLayout>
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+               >
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="40dp"
-                    android:visibility="gone"
-                    android:src="@drawable/ic_baseline_lock_24"
-                    />
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler1"
+                <!-- TODO: Update blank fragment layout -->
+
+                <LinearLayout
+
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
-                    android:scrollbarStyle="outsideInset"
-                    android:scrollbars="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/customborder"
+                    android:orientation="horizontal">
 
-                </androidx.recyclerview.widget.RecyclerView>
-            </FrameLayout>
+                    <ImageView
+                        android:id="@+id/imageone"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/avataprofilee" />
+
+                    <ImageView
+                        android:id="@+id/imagetwo"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/avataprofilee" />
+
+                    <ImageView
+                        android:id="@+id/imagethree"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/avataprofilee" />
+
+                    <ImageView
+                        android:id="@+id/imagefour"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/avataprofilee" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center|center_horizontal"
+                        android:layout_weight="1"
+                        android:background="#000000"
+                        android:gravity="center|center_horizontal|center_vertical"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/lock" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textColor="#DDDDDD"
+                            android:textColorHighlight="#FFFFFF" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/groupidbyName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Flirtyz Group Name" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/creatorsname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="By Creators Name"
+                        android:textColor="@color/colorPrimaryDark" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_width="match_parent"-->
+
+<!--                android:background="@drawable/customborder"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/emojigroup" />-->
+
+
+<!--            </LinearLayout>-->
+
+
+
+
+<!--            <LinearLayout-->
+
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Flirtyz Group Name" />-->
+
+<!--                <Space-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="By Creators Name"-->
+<!--                    android:textColor="@color/colorPrimaryDark"/>-->
+<!--            </LinearLayout>-->
+
+
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_marginTop="40dp"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:src="@drawable/ic_baseline_lock_24"-->
+<!--                    />-->
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recycler1"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:scrollbarStyle="outsideInset"-->
+<!--                    android:scrollbars="horizontal">-->
+
+<!--                </androidx.recyclerview.widget.RecyclerView>-->
+<!--            </FrameLayout>-->
 
 
             <Button
@@ -111,6 +299,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/btn_signup"
                 android:onClick="Action"
+                android:id="@+id/btn_purchase"
                 android:text="PURCHASE $2.99"
                 android:textAppearance="@style/TextStyle"
                 android:textColor="@color/white"
@@ -130,48 +319,176 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="40dp"
-                    android:visibility="gone"
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
 
-                    android:src="@drawable/ic_baseline_lock_24"
-                    />
+                    android:layout_height="wrap_content"/>
+
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler2"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
-                    android:scrollbarStyle="outsideInset"
-                    android:scrollbars="horizontal"/>
+                    android:layout_marginEnd="20dp"
+                    android:id="@+id/recyclerview"
+                    android:layout_height="wrap_content"/>
+
             </FrameLayout>
 
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="40dp"
-                    android:visibility="gone"
 
-                    android:src="@drawable/ic_baseline_lock_24"
-                    />
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler3"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
-                    android:scrollbarStyle="outsideInset"
-                    android:scrollbars="horizontal"/>
-            </FrameLayout>
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_width="match_parent"-->
+
+<!--                android:background="@drawable/customborder"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/emojigroup" />-->
+
+
+<!--            </LinearLayout>-->
+
+
+
+
+<!--            <LinearLayout-->
+
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Flirtyz Group Name" />-->
+
+<!--                <Space-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="By Creators Name"-->
+<!--                    android:textColor="@color/colorPrimaryDark"/>-->
+<!--            </LinearLayout>-->
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_width="match_parent"-->
+
+<!--                android:background="@drawable/customborder"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/emojigroup" />-->
+
+
+<!--            </LinearLayout>-->
+
+
+
+
+<!--            <LinearLayout-->
+
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Flirtyz Group Name" />-->
+
+<!--                <Space-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1" />-->
+
+<!--                <TextView-->
+
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="By Creators Name"-->
+<!--                    android:textColor="@color/colorPrimaryDark"/>-->
+<!--            </LinearLayout>-->
+
+
+
+            <!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_marginTop="40dp"-->
+<!--                    android:visibility="gone"-->
+
+<!--                    android:src="@drawable/ic_baseline_lock_24"-->
+<!--                    />-->
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recycler2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:scrollbarStyle="outsideInset"-->
+<!--                    android:scrollbars="horizontal"/>-->
+<!--            </FrameLayout>-->
+
+
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_marginTop="40dp"-->
+<!--                    android:visibility="gone"-->
+
+<!--                    android:src="@drawable/ic_baseline_lock_24"-->
+<!--                    />-->
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recycler3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:scrollbarStyle="outsideInset"-->
+<!--                    android:scrollbars="horizontal"/>-->
+<!--            </FrameLayout>-->
 
 
         </LinearLayout>

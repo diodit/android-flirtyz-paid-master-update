@@ -135,6 +135,7 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
 
                 mainModCategoryFragment.setArguments(bundle);
                 adapter.addFragment(mainModCategoryFragment, allCategory.getName());
+                Log.d(String.valueOf(i),allCategory.getName());
             }
 
             if(i == 1){
@@ -143,6 +144,7 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
                 bundle.putString("categoryId", String.valueOf(allCategory.getId()));
 
                 mainModCategoryFragment2.setArguments(bundle);
+                Log.d(String.valueOf(i)+"Number",allCategory.getName());
                 adapter.addFragment(mainModCategoryFragment2, allCategory.getName());
             }
 
@@ -150,7 +152,7 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
                 MainModCategoryFragment3 mainModCategoryFragment3 = new MainModCategoryFragment3();
                 bundle.putString("filterText", filterText);
                 bundle.putString("categoryId", String.valueOf(allCategory.getId()));
-
+                Log.d(String.valueOf(i)+"Number",allCategory.getName());
                 mainModCategoryFragment3.setArguments(bundle);
                 adapter.addFragment(mainModCategoryFragment3, allCategory.getName());
             }
@@ -159,7 +161,7 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
                 MainModCategoryFragment4 mainModCategoryFragment4 = new MainModCategoryFragment4();
                 bundle.putString("filterText", filterText);
                 bundle.putString("categoryId", String.valueOf(allCategory.getId()));
-
+                Log.d(String.valueOf(i)+"Number",allCategory.getName());
                 mainModCategoryFragment4.setArguments(bundle);
                 adapter.addFragment(mainModCategoryFragment4, allCategory.getName());
             }
@@ -168,7 +170,7 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
                 MainModCategoryFragment5 mainModCategoryFragment5 = new MainModCategoryFragment5();
                 bundle.putString("filterText", filterText);
                 bundle.putString("categoryId", String.valueOf(allCategory.getId()));
-
+                Log.d(String.valueOf(i)+"Number",allCategory.getName());
                 mainModCategoryFragment5.setArguments(bundle);
                 adapter.addFragment(mainModCategoryFragment5, allCategory.getName());
             }
@@ -177,7 +179,7 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
                 MainModCategoryFragment6 mainModCategoryFragment6 = new MainModCategoryFragment6();
                 bundle.putString("filterText", filterText);
                 bundle.putString("categoryId", String.valueOf(allCategory.getId()));
-
+                Log.d(String.valueOf(i)+"Number",allCategory.getName());
                 mainModCategoryFragment6.setArguments(bundle);
                 adapter.addFragment(mainModCategoryFragment6, allCategory.getName());
             }
@@ -186,7 +188,7 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
                 MainModCategoryFragment7 mainModCategoryFragment7 = new MainModCategoryFragment7();
                 bundle.putString("filterText", filterText);
                 bundle.putString("categoryId", String.valueOf(allCategory.getId()));
-
+                Log.d(String.valueOf(i)+"Number",allCategory.getName());
                 mainModCategoryFragment7.setArguments(bundle);
                 adapter.addFragment(mainModCategoryFragment7, allCategory.getName());
             }
@@ -195,7 +197,7 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
                 MainModCategoryFragment8 mainModCategoryFragment8 = new MainModCategoryFragment8();
                 bundle.putString("filterText", filterText);
                 bundle.putString("categoryId", String.valueOf(allCategory.getId()));
-
+                Log.d(String.valueOf(i)+"Number",allCategory.getName());
                 mainModCategoryFragment8.setArguments(bundle);
                 adapter.addFragment(mainModCategoryFragment8, allCategory.getName());
             }
@@ -204,7 +206,7 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
                 MainModCategoryFragment9 mainModCategoryFragment9 = new MainModCategoryFragment9();
                 bundle.putString("filterText", filterText);
                 bundle.putString("categoryId", String.valueOf(allCategory.getId()));
-
+                Log.d(String.valueOf(i)+"Number",allCategory.getName());
                 mainModCategoryFragment9.setArguments(bundle);
                 adapter.addFragment(mainModCategoryFragment9, allCategory.getName());
             }
@@ -213,7 +215,7 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
                 MainModCategoryFragment10 mainModCategoryFragment10 = new MainModCategoryFragment10();
                 bundle.putString("filterText", filterText);
                 bundle.putString("categoryId", String.valueOf(allCategory.getId()));
-
+                Log.d(String.valueOf(i)+"Number",allCategory.getName());
                 mainModCategoryFragment10.setArguments(bundle);
                 adapter.addFragment(mainModCategoryFragment10, allCategory.getName());
             }
@@ -222,7 +224,7 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
                 MainModCategoryFragment11 mainModCategoryFragment11 = new MainModCategoryFragment11();
                 bundle.putString("filterText", filterText);
                 bundle.putString("categoryId", String.valueOf(allCategory.getId()));
-
+                Log.d(String.valueOf(i)+"Number",allCategory.getName());
                 mainModCategoryFragment11.setArguments(bundle);
                 adapter.addFragment(mainModCategoryFragment11, allCategory.getName());
             }
@@ -268,6 +270,8 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
         if(!filterText.isEmpty()){
             adapter.notifyDataSetChanged();
         }
+
+
         viewPager.setAdapter(adapter);
     }
 
@@ -376,7 +380,8 @@ public class MainModActivity extends BaseActivity implements NavigationView.OnNa
 //        }
         else if (id == R.id.Inapp) {
 
-            Intent intent = new Intent(MainModActivity.this, FlirtyGroupPage.class);
+//          Intent intent = new Intent(MainModActivity.this, FlirtyGroupPage.class);
+            Intent intent = new Intent(MainModActivity.this, FlirtyappInApp.class);
             startActivity(intent);
 
         }

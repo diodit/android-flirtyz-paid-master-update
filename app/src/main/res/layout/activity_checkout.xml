@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -38,27 +37,133 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include">
 
-            <FrameLayout
+            <LinearLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/customborder"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="40dp"
-                    android:src="@drawable/ic_baseline_lock_24"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/imageone"
+                    android:layout_width="0dp"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="50dp"
                     android:layout_weight="1"
-                    android:src="@drawable/emojigroup" />
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/avataprofilee" />
+
+                <ImageView
+                    android:id="@+id/imagetwo"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/avataprofilee" />
 
 
-            </FrameLayout>
+
+                <ImageView
+                    android:id="@+id/imagethree"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/avataprofilee" />
+
+                <ImageView
+                    android:id="@+id/imagefour"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/avataprofilee" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center|center_horizontal"
+                    android:layout_weight="1"
+                    android:background="#000000"
+                    android:gravity="center|center_horizontal|center_vertical"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/lock" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textColor="#DDDDDD"
+                        android:textColorHighlight="#FFFFFF" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/groupidbyName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Flirtyz Group Name" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/creator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="By Creators Name"
+                    android:textColor="@color/colorPrimaryDark" />
+            </LinearLayout>
+
+
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginEnd="20dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_marginTop="40dp"-->
+<!--                    android:src="@drawable/ic_baseline_lock_24"-->
+<!--                    android:visibility="gone" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imb"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    android:src="@drawable/emojigroup" />-->
+
+
+<!--            </FrameLayout>-->
 
 
             <!--            <Button-->
@@ -74,46 +179,51 @@
             <!--                android:textColor="@color/white"-->
             <!--                android:textSize="20sp" />-->
 
-            <LinearLayout
-                android:id="@+id/LinearLayout04"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+<!--            <LinearLayout-->
+<!--                android:id="@+id/LinearLayout04"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:layout_marginRight="20dp">-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_weight="1"
-                    android:text="Flirtyz Group Name"
-                    android:textColor="@color/black">
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Flirtyz Group Name"-->
+<!--                    android:textColor="@color/black">-->
 
-                </TextView>
+<!--                </TextView>-->
 
-                <TextView
+<!--                <TextView-->
 
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
 
-                    android:layout_marginLeft="40dp"
-                    android:layout_weight="1"
-                    android:text="By: Creators Name"
-                    android:textColor="@color/red">
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="right"-->
+<!--                    android:text="By: Creators Name"-->
+<!--                    android:textColor="@color/red">-->
 
-                </TextView>
-            </LinearLayout>
+<!--                </TextView>-->
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:id="@+id/LinearLayout03"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+               >
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="InApp Fee: $1.99"
                     android:textColor="@color/black">
@@ -121,15 +231,13 @@
                 </TextView>
 
                 <TextView
-
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
-
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
                     android:layout_weight="1"
+                    android:id="@+id/totalfee"
+                    android:gravity="right|end"
                     android:text="Total Fee: $1.99"
-
                     android:textColor="@color/bright_sun">
 
                 </TextView>
@@ -139,13 +247,14 @@
                 android:id="@+id/LinearLayout02"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
 
                 <Button
                     android:id="@+id/Button02"
                     android:layout_width="100dp"
                     android:layout_height="60dp"
-                    android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:background="@drawable/arrow_shape"
 
@@ -159,7 +268,6 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_signup"
                     android:text="Check Out">
@@ -173,6 +281,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/checkout_follow"
                 android:textColor="@color/red"
                 android:textStyle="bold" />
@@ -181,7 +290,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/checkout_message"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -191,6 +301,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/checkout_message2"
                 android:textColor="@color/black"
                 android:textStyle="bold" />

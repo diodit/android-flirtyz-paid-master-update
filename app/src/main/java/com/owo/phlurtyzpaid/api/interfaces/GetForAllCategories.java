@@ -13,4 +13,7 @@ public interface GetForAllCategories {
 
     @GET
     Call<List<AllCategory>> getAllData(@Url String url);
+
+    @GET
+    Call<List<AllCategory>> getInApp(@Url String url);
 }
